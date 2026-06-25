@@ -1,0 +1,98 @@
+<!-- Chèn thêm thư viện Icon chuyên nghiệp thay thế cho Emoji -->
+<link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="Overview.css" />
+
+<div class="cstm-wrapper-full">
+  <!-- Thống kê KPI Gradient Đậm Đà -->
+  <div class="cstm-kpi-grid">
+    <div class="cstm-kpi-card card-revenue">
+      <div class="cstm-kpi-icon">
+        <i class="ri-money-dollar-box-fill"></i>
+      </div>
+      <div class="cstm-kpi-info">
+        <span class="cstm-kpi-label">Doanh thu tháng này</span>
+        <h3 class="cstm-kpi-value" id="kpiRevenue">000,000,000 đ</h3>
+      </div>
+    </div>
+
+    <div class="cstm-kpi-card card-bookings">
+      <div class="cstm-kpi-icon">
+        <i class="ri-calendar-check-fill"></i>
+      </div>
+      <div class="cstm-kpi-info">
+        <span class="cstm-kpi-label">Lịch hẹn hôm nay</span>
+        <h3 class="cstm-kpi-value" id="kpiTodayBookings">0</h3>
+      </div>
+    </div>
+
+    <div class="cstm-kpi-card card-staff">
+      <div class="cstm-kpi-icon">
+        <i class="ri-user-heart-fill"></i>
+      </div>
+      <div class="cstm-kpi-info">
+        <span class="cstm-kpi-label">Nhân sự có mặt</span>
+        <h3 class="cstm-kpi-value" id="kpiActiveStaff">0/0</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Board: Biểu đồ & Trạng thái phòng -->
+  <div class="cstm-live-board">
+    <div class="cstm-board-column">
+      <h3 class="cstm-board-title">
+        <i class="ri-bar-chart-2-fill"></i> Xu Hướng Doanh Thu (6 Tháng)
+      </h3>
+      <div class="cstm-chart-container">
+        <canvas id="revenueChart"></canvas>
+      </div>
+    </div>
+
+    <div class="cstm-board-column">
+      <h3 class="cstm-board-title">
+        <i class="ri-hotel-bed-fill"></i> Trạng Thái Phòng Thú Cưng
+      </h3>
+      <div class="cstm-room-grid" id="roomLiveStatus">
+        <div class="cstm-room-card loading">Đang tải dữ liệu phòng...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bảng danh sách chờ duyệt đậm nét -->
+  <div class="cstm-data-section">
+    <div class="cstm-section-header">
+      <h2 class="cstm-section-title">
+        <i class="ri-notification-badge-fill"></i> Danh Sách Lịch Hẹn Đang Chờ
+        Duyệt
+      </h2>
+      <button class="cstm-btn cstm-btn-link" id="btnViewAllBookings">
+        Xem tất cả lịch hẹn <i class="ri-arrow-right-line"></i>
+      </button>
+    </div>
+
+    <div class="cstm-table-wrapper">
+      <table class="cstm-table">
+        <thead>
+          <tr>
+            <th>Mã Khách</th>
+            <th>Tên Thú Cưng</th>
+            <th>Dịch Vụ Đăng Ký</th>
+            <th>Thời Gian</th>
+            <th>Thanh Toán</th>
+            <th class="text-center">Hành Động</th>
+          </tr>
+        </thead>
+        <tbody id="tablePendingBookings">
+          <tr>
+            <td colspan="6" class="text-center">Đang tải dữ liệu...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="Overview.js"></script>

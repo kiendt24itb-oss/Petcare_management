@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetCare Premium</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght=300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="component/header/Header.css" />
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <main id="main-content"></main>
+
+    <div id="footer-placeholder"></div>
+
+    <div id="authModalContainer"></div>
+
+    <script src="component/header/Header.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Tải file Footer từ thư mục component/footer/
+        fetch("component/footer/Footer.html")
+          .then((response) => {
+            if (!response.ok) throw new Error("Không thể tải file Footer.html");
+            return response.text();
+          })
+          .then((footerHtml) => {
+            document.getElementById("footer-placeholder").innerHTML =
+              footerHtml;
+          })
+          .catch((err) => console.error("Lỗi nạp hệ thống Footer:", err));
+      });
+    </script>
+  </body>
+</html>

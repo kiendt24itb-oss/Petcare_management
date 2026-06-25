@@ -1,0 +1,548 @@
+/* ==========================================================================
+    🐾 FILE CSS HOÀN CHỈNH - TRANG DANH SÁCH & MODAL THÊM BÉ CƯNG TÍCH HỢP
+    ========================================================================== */
+
+:root {
+  --pet-primary: #ff7a45;
+  --pet-primary-hover: #e06532;
+  --pet-dark: #4a3e39;
+  --pet-gray-text: #8c7e76;
+  --pet-white: #ffffff;
+  --pet-bg: #f5f0ec; /* Màu nền xám kem mềm mại đồng bộ hệ thống */
+  --pet-border: #ede5e0;
+}
+
+/* --------------------------------------------------------------------------
+    1. RESET TOÀN CỤC & ĐỊNH DẠNG CƠ BẢN
+    -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
+
+body {
+  background-color: var(--pet-bg);
+  color: var(--pet-dark);
+  padding: 24px;
+}
+
+/* KHUNG CHỨA TRANG DANH SÁCH */
+.pet-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pet-header {
+  margin-bottom: 24px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: var(--pet-gray-text);
+  font-weight: 500;
+}
+
+.breadcrumb span {
+  color: var(--pet-dark);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+    2. LƯỚI GRID & THẺ HIỂN THỊ THÚ CƯNG (OUTER CARD)
+    -------------------------------------------------------------------------- */
+.pet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.pet-card {
+  background: var(--pet-white);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(74, 62, 57, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.pet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(74, 62, 57, 0.1);
+}
+
+/* Khung bọc ảnh đại diện tròn viền cam */
+.avatar-wrapper {
+  margin-bottom: 12px;
+}
+
+.pet-avatar-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--pet-primary);
+  padding: 2px;
+  background: var(--pet-white);
+}
+
+.pet-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pet-dark);
+  margin-bottom: 16px;
+}
+
+.text-muted {
+  color: var(--pet-gray-text);
+  font-style: italic;
+}
+
+/* Hàng tóm tắt thông tin dưới thẻ (Loài & Mã) */
+.pet-info-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  border-top: 1px solid #fcfbf9;
+  padding-top: 12px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-label {
+  font-size: 11px;
+  color: var(--pet-gray-text);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.info-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--pet-dark);
+}
+
+/* Ô ĐẶC BIỆT: NÚT THÊM BÉ CƯNG (VIỀN ĐỨT KHÚC) */
+.add-pet-trigger {
+  border: 2px dashed #ff9e79;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  justify-content: center;
+}
+
+.add-pet-trigger:hover {
+  background: var(--pet-white);
+  border-color: var(--pet-primary);
+}
+
+.add-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--pet-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pet-primary);
+  font-size: 18px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.add-pet-trigger:hover .add-icon-circle {
+  background: var(--pet-primary);
+  color: var(--pet-white);
+}
+
+.add-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--pet-primary);
+}
+
+/* --------------------------------------------------------------------------
+    3. CẤU TRÚC MODAL SIDEBAR (TRƯỢT TỪ PHẢI SANG)
+    -------------------------------------------------------------------------- */
+.pet-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(74, 62, 57, 0.4); /* Nền mờ tối tông ấm */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Đẩy nội dung sát lề phải màn hình */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+/* Class active để kích hoạt mở Modal */
+.pet-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pet-modal-card {
+  width: 100%;
+  max-width: 380px;
+  height: 100%;
+  background: var(--pet-white);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.pet-modal-overlay.active .pet-modal-card {
+  transform: translateX(0);
+}
+
+/* Header của Modal */
+.modal-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--pet-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pet-dark);
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--pet-gray-text);
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Thân biểu mẫu (Cho phép cuộn dọc nếu màn hình nhỏ) */
+.modal-form-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* --------------------------------------------------------------------------
+    4. CHI TIẾT CÁC PHẦN TỬ TRONG FORM MODAL (TÍCH HỢP TỪ TRANG INFO CŨ)
+    -------------------------------------------------------------------------- */
+/* Tải ảnh trong modal */
+.modal-avatar-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.modal-avatar-container {
+  position: relative;
+}
+
+.modal-avatar-img {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 2px solid var(--pet-border);
+  padding: 2px;
+  object-fit: cover;
+}
+
+.modal-upload-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  background: #736761;
+  color: var(--pet-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.modal-upload-badge input {
+  display: none;
+}
+
+/* Bố cục trường nhập liệu dạng dẹt, tối ưu khoảng cách */
+.modal-field-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.modal-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b5e58;
+  margin-bottom: 4px;
+}
+
+.modal-input,
+.modal-select,
+.modal-textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1.5px solid #eae1dc;
+  background: #fdfdfd;
+  border-radius: 8px;
+  color: var(--pet-dark);
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.modal-input:focus,
+.modal-select:focus,
+.modal-textarea:focus {
+  border-color: var(--pet-primary);
+}
+
+.modal-textarea {
+  resize: none;
+  font-family: inherit;
+}
+
+/* Trạng thái ô nhập liệu bị khóa (Mã thú cưng hệ thống tự sinh) */
+.modal-input-disabled {
+  background: #f5f2eb !important;
+  border-color: #ede5e0 !important;
+  color: #a89790 !important;
+  cursor: not-allowed;
+  font-weight: 700;
+}
+
+/* Tùy biến nút chọn Select có mũi tên đi xuống */
+.modal-select-wrapper {
+  position: relative;
+}
+
+.modal-select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.modal-select-wrapper::after {
+  content: "▾";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #bfaea6;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+    5. KHU VỰC THANH NÚT BẤM (HÀNG ĐÔI BÁM ĐÁY MODAL)
+    -------------------------------------------------------------------------- */
+.modal-actions {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--pet-border);
+  display: flex;
+  gap: 12px;
+}
+
+/* Nút đặt lại (Màu phụ nhạt) */
+.modal-btn-secondary {
+  padding: 11px 24px;
+  background: #f5f2eb;
+  color: #6b5e58;
+  border: 1px solid #ede5e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-btn-secondary:hover {
+  background: #eae1dc;
+}
+
+/* Nút lưu thông tin bé (Màu cam chủ đạo) */
+.modal-btn-primary {
+  flex: 1; /* Chiếm trọn không gian hàng còn lại */
+  padding: 11px;
+  background: var(--pet-primary);
+  color: var(--pet-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 122, 69, 0.18);
+  transition: all 0.2s ease;
+}
+
+.modal-btn-primary:hover {
+  background: var(--pet-primary-hover);
+}
+
+/* Khung định vị nằm cố định ở góc trên bên phải màn hình */
+#pet-toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000; /* Đảm bảo luôn nổi lên trên cùng của Modal */
+  display: flex;
+  vertical-align: middle;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Định hình thanh Toast thông báo */
+.pet-toast {
+  background: #ffffff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 280px;
+  max-width: 400px;
+
+  /* Hiệu ứng: trượt vào trong 0.3s, đợi 2.7s rồi tự mờ dần biến mất trong 0.3s */
+  animation:
+    toastSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+    toastFadeOut 0.3s ease 2.7s forwards;
+}
+
+/* Phân biệt màu sắc theo loại thông báo */
+.pet-toast.success {
+  border-left: 6px solid #2ecc71;
+  color: #27ae60;
+}
+
+.pet-toast.error {
+  border-left: 6px solid #e74c3c;
+  color: #c0392b;
+}
+
+/* Định nghĩa hiệu ứng Animation chuyển động */
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastFadeOut {
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. KHU VỰC THANH NÚT BẤM (HÀNG ĐÔI BÁM ĐÁY MODAL) - CẬP NHẬT CHUẨN ĐÉT
+   -------------------------------------------------------------------------- */
+.modal-actions {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--pet-border);
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Ép tất cả nút bấm co giãn thông minh và bằng chiều cao nhau */
+.modal-btn-secondary,
+.modal-btn-danger,
+.modal-btn-primary {
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Nút đặt lại (Màu phụ nhạt) */
+.modal-btn-secondary {
+  background: #f5f2eb;
+  color: #6b5e58;
+  border: 1px solid #ede5e0;
+}
+
+.modal-btn-secondary:hover {
+  background: #eae1dc;
+}
+
+/* 🔥 NÚT XÓA BÉ CƯNG (Đỏ cảnh báo nguy hiểm độc quyền) */
+.modal-btn-danger {
+  background: #fff1f0;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
+}
+
+.modal-btn-danger:hover {
+  background: #ff4d4f;
+  color: var(--pet-white);
+  border-color: #ff4d4f;
+  box-shadow: 0 4px 12px rgba(255, 77, 79, 0.2);
+}
+
+/* Nút lưu thông tin bé (Màu cam chủ đạo) */
+.modal-btn-primary {
+  flex: 1; /* Chiếm diện tích ưu tiên */
+  background: var(--pet-primary);
+  color: var(--pet-white);
+  border: none;
+  box-shadow: 0 4px 12px rgba(255, 122, 69, 0.18);
+}
+
+.modal-btn-primary:hover {
+  background: var(--pet-primary-hover);
+}
+
+/* 🔥 TIÊU ĐỀ LÊN MÀU CAM RỰC RỠ */
+.modal-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--pet-primary) !important; /* Lên tông cam thương hiệu */
+}

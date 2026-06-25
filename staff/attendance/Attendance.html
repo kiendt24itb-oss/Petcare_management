@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chấm Công Nhân Viên - PetCare</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="Attendance.css" />
+  </head>
+  <body>
+    <div id="pet-toast-container"></div>
+
+    <div class="attendance-dashboard">
+      <div class="attendance-card action-box">
+        <div class="clock-section">
+          <div class="calendar-badge">
+            <i class="fa-regular fa-calendar-days"></i>
+            <span id="current-date">Thứ Hai, 15/06/2026</span>
+          </div>
+          <div id="digital-clock">00:00:00</div>
+          <p class="clock-tip">
+            Vui lòng kiểm tra kỹ thời gian trước khi bấm ca
+          </p>
+        </div>
+
+        <div class="status-banner" id="status-banner">
+          <i class="fa-solid fa-circle-info"></i> Trạng thái hôm nay:
+          <b>Chưa ghi nhận ca làm</b>
+        </div>
+
+        <div class="attendance-btn-group">
+          <button id="btn-checkin" class="btn-attendance checkin">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span>Bắt Đầu Ca (Check-in)</span>
+          </button>
+          <button id="btn-checkout" class="btn-attendance checkout" disabled>
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Kết Thúc Ca (Check-out)</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="attendance-card history-box">
+        <div class="history-header">
+          <h3>
+            <i class="fa-solid fa-clock-rotate-left"></i> Nhật Ký Chấm Công
+            Tháng Này
+          </h3>
+          <span class="total-days-badge">Tháng 06/2026</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="attendance-table">
+            <thead>
+              <tr>
+                <th>Ngày</th>
+                <th>Giờ Vào</th>
+                <th>Giờ Ra</th>
+                <th>Tổng Giờ</th>
+                <th>Trạng Thái</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-history-rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="Attendance.js"></script>
+  </body>
+</html>

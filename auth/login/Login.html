@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="/auth/login/Login.css" />
+
+<div class="pet-auth-overlay" id="authOverlay" onclick="closeAuthModal(event)">
+  <div class="pet-auth-modal">
+    <img
+      src="../../uploads/cat_top.png"
+      class="real-pet-corner pet-corner-top-right"
+      alt="Cat"
+    />
+    <img
+      src="../../uploads/dog.png"
+      class="real-pet-corner pet-corner-bottom-left"
+      alt="Dog"
+    />
+    <img
+      src="../../uploads/cat_bot.png"
+      class="real-pet-corner pet-corner-bottom-right"
+      alt="Cat"
+    />
+
+    <div class="pet-auth-logo">🐾 PETCARE</div>
+
+    <h2 class="pet-auth-title">Chào Mừng Trở Lại ✨</h2>
+
+    <form onsubmit="submitLogin(event)">
+      <div class="pet-input-group">
+        <label>
+          <span class="label-icon">👤</span>
+          Tài khoản / Email
+        </label>
+        <div class="pet-input-wrapper">
+          <input
+            type="text"
+            id="loginUsername"
+            placeholder="Nhập tài khoản hoặc Email của bạn"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="pet-input-group">
+        <label>
+          <span class="label-icon">🔒</span>
+          Mật khẩu bảo vệ
+        </label>
+        <div class="pet-input-wrapper">
+          <input
+            type="password"
+            id="loginPwd"
+            placeholder="Nhập mật khẩu của bạn"
+            required
+          />
+          <span class="toggle-password" onclick="togglePwd('loginPwd')"
+            >👁️</span
+          >
+        </div>
+      </div>
+
+      <div class="pet-auth-options">
+        <label class="pet-remember">
+          <input type="checkbox" />
+          Ghi nhớ mật khẩu
+        </label>
+      </div>
+
+      <button type="submit" class="pet-auth-btn">ĐĂNG NHẬP</button>
+    </form>
+
+    <div class="pet-auth-switch">
+      Chưa có tài khoản?
+      <a href="javascript:void(0)" onclick="loadAuthComponent('register')">
+        ĐĂNG KÝ NGAY
+      </a>
+    </div>
+  </div>
+</div>
+<div id="pet-toast-container"></div>
+
+<script src="/auth/login/Login.js"></script>

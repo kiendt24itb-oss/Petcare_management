@@ -1,0 +1,201 @@
+<link rel="stylesheet" href="ServiceManagement.css" />
+
+<div class="cstm-wrapper-full">
+  <div class="cstm-section-header">
+    <h2 class="cstm-section-title">
+      <i class="ri-settings-5-fill"></i> Cấu Hình Danh Mục & Bảng Giá Dịch Vụ
+    </h2>
+
+    <div class="cstm-tab-switcher">
+      <button class="tab-btn active" onclick="switchServiceTab('HEALTH')">
+        <i class="ri-stethoscope-line"></i> 🩺 Dịch Vụ Khám Bệnh
+      </button>
+      <button class="tab-btn" onclick="switchServiceTab('SPA')">
+        <i class="ri-scissors-line"></i> ✂️ Gói Làm Đẹp (SPA)
+      </button>
+      <button class="tab-btn" onclick="switchServiceTab('HOTEL')">
+        <i class="ri-hotel-line"></i> 🏨 Lưu Trú Thú Cưng (HOTEL)
+      </button>
+    </div>
+  </div>
+
+  <div id="panel-HEALTH" class="service-panel active">
+    <div class="panel-actions-bar">
+      <h3>Danh Mục Loại Hình Khám & Chi Phí</h3>
+      <button class="cstm-btn-link" onclick="openPriceModal('HEALTH')">
+        ➕ Thêm Loại Hình Khám
+      </button>
+    </div>
+    <div class="cstm-data-section">
+      <div class="cstm-table-wrapper">
+        <table class="cstm-table">
+          <thead>
+            <tr>
+              <th width="12%">Mã Dịch Vụ</th>
+              <th width="28%">Tên Loại Hình Khám</th>
+              <th width="15%">Mã Phòng Chỉ Định</th>
+              <th width="25%">Mô Tả Chi Tiết</th>
+              <th width="10%">Đơn Giá</th>
+              <th width="10%" class="text-center">Hành Động</th>
+            </tr>
+          </thead>
+          <tbody id="tableHealthBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-SPA" class="service-panel">
+    <div class="panel-actions-bar">
+      <h3>Danh Sách Gói Spa & Làm Đẹp Thú Cưng</h3>
+      <button class="cstm-btn-link" onclick="openPriceModal('SPA')">
+        ➕ Thêm Gói Spa Mới
+      </button>
+    </div>
+    <div class="cstm-data-section">
+      <div class="cstm-table-wrapper">
+        <table class="cstm-table">
+          <thead>
+            <tr>
+              <th width="12%">Mã Gói</th>
+              <th width="28%">Tên Gói Dịch Vụ</th>
+              <th width="15%">Mã Khu Vực Spa</th>
+              <th width="25%">Mô Tả / Cân Nặng</th>
+              <th width="10%">Giá Trọn Gói</th>
+              <th width="10%" class="text-center">Hành Động</th>
+            </tr>
+          </thead>
+          <tbody id="tableSpaBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-HOTEL" class="service-panel">
+    <div class="panel-actions-bar">
+      <h3>Danh Sách Gói Dịch Vụ Lưu Trú</h3>
+      <button class="cstm-btn-link" onclick="openPriceModal('HOTEL')">
+        ➕ Thêm Gói Lưu Trú Mới
+      </button>
+    </div>
+    <div class="cstm-data-section">
+      <div class="cstm-table-wrapper">
+        <table class="cstm-table">
+          <thead>
+            <tr>
+              <th width="12%">Mã Gói</th>
+              <th width="28%">Tên Gói Lưu Trú</th>
+              <th width="15%">Mã Phòng Lưu Trú</th>
+              <th width="25%">Thời Gian Lưu Trú</th>
+              <th width="10%">Giá Phòng/Ngày</th>
+              <th width="10%" class="text-center">Hành Động</th>
+            </tr>
+          </thead>
+          <tbody id="tableHotelBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel-actions-bar" style="margin-top: 30px">
+      <h3>Sơ Đồ Trạng Thái Phòng Bộ Phận Lưu Trú</h3>
+    </div>
+    <div class="hotel-grid-container" id="hotelGridBody"></div>
+  </div>
+</div>
+
+<div id="priceModal" class="cstm-modal">
+  <div class="cstm-modal-content">
+    <div class="cstm-modal-header">
+      <h3 id="modalPriceTitle">Chi Tiết / Cấu Hình Dịch Vụ</h3>
+      <span class="cstm-modal-close" onclick="closePriceModal()">&times;</span>
+    </div>
+
+    <div class="cstm-modal-form-scroll">
+      <form id="formPriceService">
+        <input type="hidden" id="priceTargetId" />
+        <input type="hidden" id="priceServiceType" />
+
+        <div class="form-group">
+          <label id="lblServiceName">Tên Loại Hình / Tên Gói Dịch Vụ</label>
+          <input
+            type="text"
+            id="inputServiceName"
+            required
+            placeholder="Ví dụ: Tắm sấy trọn gói, Khám tổng quát..."
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Phòng / Không Gian Vận Hành Chỉ Định</label>
+          <select id="inputServiceRoomId" required>
+            <option value="">
+              -- Đang tải danh sách phòng thích hợp... --
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Thời Gian Thực Hiện Ước Tính (Phút)</label>
+          <input
+            type="number"
+            id="inputServiceDuration"
+            required
+            min="1"
+            placeholder="Ví dụ: 60, 1440 (1 ngày)..."
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Mô Tả Chi Tiết / Cấu Hình Ghi Chú</label>
+          <textarea
+            id="inputServiceDesc"
+            rows="3"
+            placeholder="Nhập ghi chú cụ thể về dịch vụ hoặc cân nặng áp dụng..."
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Giá Tiền (VNĐ)</label>
+          <input
+            type="number"
+            id="inputServicePrice"
+            required
+            min="0"
+            placeholder="Ví dụ: 150000"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Trạng Thái Kinh Doanh</label>
+          <select id="inputServiceStatus">
+            <option value="true">
+              🟢 Đang Kinh Doanh (Hiện trên Ứng dụng)
+            </option>
+            <option value="false">🔴 Ngừng Phục Vụ (Ẩn tạm thời)</option>
+          </select>
+        </div>
+
+        <div class="cstm-modal-footer">
+          <button
+            type="button"
+            class="cstm-action-btn btn-view"
+            style="background-color: #eae1da"
+            onclick="closePriceModal()"
+          >
+            Đóng
+          </button>
+          <button
+            type="submit"
+            class="cstm-action-btn"
+            style="background-color: var(--cstm-primary); color: white"
+          >
+            💾 Lưu Thay Đổi
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="pet-toast-container"></div>
+<script src="ServiceManagement.js"></script>

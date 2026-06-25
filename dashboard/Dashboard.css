@@ -1,0 +1,1042 @@
+/* ==========================================================================
+   I. BỘ RESET STYLES THƯƠNG HIỆU & BIẾN TOÀN CỤC
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --primary-color: #ff7a45; /* Màu cam thương hiệu */
+  --primary-hover: #e06532; /* Màu cam hover */
+  --dark-color: #262626; /* Màu tối */
+  --gray-text: #737373; /* Chữ xám */
+  --light-bg: #fffbf9; /* Nền sáng ấm */
+  --white: #ffffff;
+  --shadow: 0 10px 30px rgba(255, 122, 69, 0.05);
+  --border-radius: 16px;
+  --success-color: #00a896;
+}
+
+body {
+  background-color: #fdfdfd;
+  color: var(--dark-color);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   II. LAYOUT SIDEBAR: KEM TRÀ SỮA DỊU MẮT
+   ========================================================================== */
+.sidebar {
+  width: 270px;
+  background-color: #f7f3f0; /* Màu trà sữa beige nhạt */
+  color: var(--dark-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px 18px;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  border-right: 1px solid #ede5e0;
+}
+
+.sidebar-brand {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-brand span {
+  color: #4a3e39; /* Chữ Premium màu nâu đất đậm */
+}
+
+.user-mini-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 12px;
+  background: var(--white);
+  border-radius: 14px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(74, 62, 57, 0.05);
+  border: 1px solid #eae1dc;
+}
+
+.user-mini-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-color);
+}
+
+.user-mini-info h4 {
+  font-size: 13.5px;
+  color: #4a3e39;
+  font-weight: 700;
+}
+
+.user-mini-info span {
+  font-size: 10.5px;
+  color: var(--primary-color);
+  font-weight: bold;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  flex-grow: 1;
+}
+
+.sidebar-menu li {
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #6b5e58;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li.active a {
+  color: var(--primary-color);
+  background: var(--white);
+  font-weight: 700;
+  padding-left: 20px;
+  box-shadow: 0 4px 10px rgba(74, 62, 57, 0.04);
+}
+
+.sidebar-menu li.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 4px;
+  background-color: var(--primary-color);
+  border-radius: 0 4px 4px 0;
+  z-index: 5;
+}
+
+.sidebar-footer {
+  border-top: 1px solid #eae1dc;
+  padding-top: 15px;
+}
+
+/* ==========================================================================
+   III. LAYOUT CHÍNH & TOPBAR
+   ========================================================================== */
+.main-workspace {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fdfdfd;
+  overflow: hidden;
+}
+
+.topbar {
+  height: 70px;
+  background-color: var(--white);
+  border-bottom: 1px solid #f2ece8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  flex-shrink: 0;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: 10px 16px 10px 46px;
+  border: 1.5px solid #ffe1d4;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  outline: none;
+  width: 260px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: #fff6f2;
+  color: var(--dark-color);
+}
+
+.search-box input::placeholder {
+  color: #a89790;
+}
+
+.search-explore-icon {
+  position: absolute;
+  left: 15px;
+  height: 22px;
+  width: 22px;
+  animation: spinIcon 4s linear infinite;
+  pointer-events: none;
+}
+
+.search-explore-icon path {
+  fill: var(--primary-color);
+  transition: fill 0.3s ease;
+}
+
+@keyframes spinIcon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.search-box input:focus {
+  border-color: var(--primary-color);
+  background-color: var(--white);
+  width: 290px;
+  box-shadow: 0 0 15px rgba(255, 122, 69, 0.2);
+}
+
+.search-box input:focus + .search-explore-icon path {
+  fill: var(--primary-hover);
+}
+
+/* LOADER 3D - KIM TỰ THÁP LỚN */
+.pyramid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  overflow: visible;
+}
+
+.pyramid-loader {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  display: block;
+  transform-style: preserve-3d;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: pyramidSpin 6s linear infinite;
+}
+
+.pyramid-loader .wrapper .side {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform-origin: center top;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.pyramid-loader .wrapper .side1 {
+  transform: rotateZ(-30deg) rotateY(90deg);
+  background: conic-gradient(#ff6d70, #ff7a45, #ffe600, #ff6d70);
+}
+
+.pyramid-loader .wrapper .side2 {
+  transform: rotateZ(30deg) rotateY(90deg);
+  background: conic-gradient(#ffe600, #ff7a45, #6cffd6, #ffe600);
+}
+
+.pyramid-loader .wrapper .side3 {
+  transform: rotateX(30deg);
+  background: conic-gradient(#6cffd6, #ff7a45, #ff6d70, #6cffd6);
+}
+
+.pyramid-loader .wrapper .side4 {
+  transform: rotateX(-30deg);
+  background: conic-gradient(#ff6d70, #ff7a45, #ffe600, #ff6d70);
+}
+
+.pyramid-loader .wrapper .shadow {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(rgba(255, 122, 69, 0.8), rgba(255, 122, 69, 0.4));
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform: rotateX(90deg) translateZ(-22px);
+  filter: blur(4px);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 122, 69, 0.8);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.role-switcher {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+  background: var(--light-bg);
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--primary-hover);
+  outline: none;
+  cursor: pointer;
+}
+
+.button-bell {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f2eb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+  border: none;
+}
+
+.bell-icon {
+  width: 16px;
+}
+.bell-icon path {
+  fill: var(--dark-color);
+}
+.button-bell:hover {
+  background-color: rgba(255, 122, 69, 0.1);
+}
+.button-bell:hover .bell-icon path {
+  fill: var(--primary-color);
+}
+.button-bell:hover .bell-icon {
+  animation: bellRing 0.9s both;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 10px;
+  right: 11px;
+  background-color: var(--primary-color);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid var(--white);
+  z-index: 10;
+}
+
+@keyframes bellRing {
+  0%,
+  100% {
+    transform-origin: top;
+  }
+  15% {
+    transform: rotateZ(10deg);
+  }
+  30% {
+    transform: rotateZ(-10deg);
+  }
+  45% {
+    transform: rotateZ(5deg);
+  }
+  60% {
+    transform: rotateZ(-5deg);
+  }
+  75% {
+    transform: rotateZ(2deg);
+  }
+}
+
+.button-bell:active {
+  transform: scale(0.85);
+}
+
+/* ==========================================================================
+   IV. SỬA ĐỔI TẬN GỐC: VÙNG CHỨA NỘI DUNG (CONTENT CONTAINER)
+   ========================================================================== */
+.content-container {
+  padding: 0px;
+  overflow: hidden;
+  flex-grow: 1;
+  background-color: #fdfdfd;
+  width: 100%;
+  height: calc(100vh - 70px);
+}
+
+/* ==========================================================================
+   V. CSS CHUYÊN NGHIỆP CHO TRANG THÔNG TIN KHÁCH HÀNG
+   ========================================================================== */
+.cstm-wrapper-full {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.cstm-card-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  overflow: hidden;
+}
+
+/* Cột trái: Sidebar Profile */
+.cstm-sidebar-profile {
+  flex: 0 0 280px;
+  background: linear-gradient(180deg, #fbf8f6 0%, #f5f0ec 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 25px;
+  border-right: 1px solid #ede5e0;
+  text-align: center;
+}
+
+.cstm-avatar-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.cstm-avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--white);
+  box-shadow: 0 8px 24px rgba(255, 122, 69, 0.15);
+}
+
+.cstm-upload-badge {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 34px;
+  height: 34px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.cstm-upload-badge:hover {
+  transform: scale(1.1);
+  background: var(--primary-hover);
+}
+
+.cstm-upload-badge input {
+  display: none;
+}
+
+.cstm-profile-name {
+  font-size: 18px;
+  color: #4a3e39;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.cstm-profile-status {
+  display: inline-block;
+  background: rgba(255, 122, 69, 0.1);
+  color: var(--primary-color);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cstm-profile-tip {
+  font-size: 12px;
+  color: var(--gray-text);
+  line-height: 1.6;
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 12px;
+  border-radius: 10px;
+}
+
+/* Cột phải: Khu vực nhập liệu chính */
+.cstm-main-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background: var(--white);
+  justify-content: space-between;
+}
+
+.cstm-section-title {
+  font-size: 20px;
+  color: #4a3e39;
+  font-weight: 700;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #fff6f2;
+}
+
+.cstm-grid-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 25px;
+  flex-grow: 1;
+}
+
+.cstm-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.cstm-col-2 {
+  grid-column: span 2;
+}
+
+.cstm-label {
+  font-size: 13px;
+  color: #6b5e58;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.cstm-input,
+.cstm-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #eae1dc;
+  background: #fdfdfd;
+  border-radius: 10px;
+  color: var(--dark-color);
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cstm-input:focus,
+.cstm-select:focus {
+  border-color: var(--primary-color);
+  background: var(--white);
+  box-shadow: 0 4px 15px rgba(255, 122, 69, 0.08);
+}
+
+.cstm-input-disabled {
+  background: #f5f2eb !important;
+  border-color: #ede5e0 !important;
+  color: #a89790 !important;
+  cursor: not-allowed;
+  font-weight: 700;
+}
+
+.cstm-input::placeholder {
+  color: #bfaea6;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.cstm-select-wrapper {
+  position: relative;
+}
+
+.cstm-select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.cstm-select-wrapper::after {
+  content: "▾";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #bfaea6;
+  pointer-events: none;
+  font-size: 16px;
+}
+
+.cstm-select:invalid {
+  color: #bfaea6;
+  font-style: italic;
+}
+
+/* Thanh hành động chứa nút */
+.cstm-actions-bar {
+  margin-top: 15px;
+  padding-top: 20px;
+  border-top: 1px solid #f2ece8;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.cstm-btn {
+  padding: 12px 32px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.cstm-btn-secondary {
+  background: #f5f2eb;
+  color: #6b5e58;
+  border: 1px solid #ede5e0;
+}
+
+.cstm-btn-secondary:hover {
+  background: #eae1dc;
+}
+
+.cstm-btn-primary {
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  box-shadow: 0 4px 14px rgba(255, 122, 69, 0.2);
+}
+
+.cstm-btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224, 101, 50, 0.3);
+}
+
+.cstm-btn:active {
+  transform: scale(0.98);
+}
+
+/* Wrapper lo di chuyển Portal: Đã hạ tốc độ xuống 5.5s rất chill và ép nhận !important */
+.portal-wrapper {
+  display: inline-block;
+  animation: floatX 5.5s ease-in-out infinite !important;
+}
+
+/* ==========================================================================
+   VI. COSMIC PORTAL - ĐÃ ĐỒNG BỘ MÀU CAM THƯƠNG HIỆU (BRANDED SUNSET)
+   ========================================================================== */
+.cosmic-portal-container {
+  width: 54px;
+  height: 54px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle,
+    #23120b 0%,
+    #0c0502 100%
+  ); /* Nền tối chuyển sang nâu cam đất sâu thẳm */
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 122, 69, 0.3); /* Viền cam mờ */
+  box-shadow:
+    0 0 15px rgba(255, 122, 69, 0.2),
+    inset 0 0 10px rgba(255, 230, 0, 0.2);
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+.cosmic-portal-container:hover {
+  transform: scale(1.12);
+  border-color: #ff7a45; /* Đổi sang màu cam thương hiệu sáng */
+  box-shadow:
+    0 0 25px rgba(255, 122, 69, 0.6),
+    0 0 50px rgba(255, 166, 0, 0.4);
+}
+
+.cosmic-core {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow:
+    0 0 12px #fff,
+    0 0 24px #ff7a45,
+    /* Core phát sáng cam */ 0 0 36px #ffe600; /* Viền ngoài core màu vàng ấm */
+}
+
+.quantum-ring {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ring-1 {
+  width: 44px;
+  height: 44px;
+  border-top: 1px solid #ff7a45; /* Cam */
+  border-bottom: 1px solid #ffe600; /* Vàng */
+  animation: spin 3s linear infinite;
+}
+
+.ring-2 {
+  width: 36px;
+  height: 36px;
+  border-left: 1px solid #ff4d4f; /* Hồng đào đậm */
+  border-right: 1px solid #ffbe1a; /* Vàng hoàng kim */
+  transform: rotateX(60deg);
+  animation: spinY 4s linear infinite;
+}
+
+.ring-3 {
+  width: 50px;
+  height: 50px;
+  border: 1px dashed rgba(255, 122, 69, 0.5); /* Nét đứt màu cam ấm */
+  animation: spin 8s linear reverse infinite;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffe600; /* Đổi sao thành hạt vàng lấp lánh */
+  border-radius: 50%;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+}
+
+.s1 {
+  animation: star 1.8s infinite linear;
+  transform: rotate(30deg);
+}
+.s2 {
+  animation: star 2.5s infinite linear 0.4s;
+  transform: rotate(115deg);
+}
+.s3 {
+  animation: star 2.1s infinite linear 0.8s;
+  transform: rotate(210deg);
+}
+.s4 {
+  animation: star 1.5s infinite linear 1.1s;
+  transform: rotate(285deg);
+}
+.s5 {
+  animation: star 2.8s infinite linear 0.2s;
+  transform: rotate(70deg);
+}
+.s6 {
+  animation: star 2s infinite linear 1.5s;
+  transform: rotate(330deg);
+}
+
+/* ==========================================================================
+   VII. BỘ ANIMATIONS CHUẨN MƯỢT
+   ========================================================================== */
+
+/* ANIMATION KIM TỰ THÁP: Xoay tròn mượt quanh trục đứng như con quay gốc */
+@keyframes pyramidSpin {
+  0% {
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+}
+
+/* ANIMATION PORTAL RING 1 & 3 */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ANIMATION PORTAL RING 2 */
+@keyframes spinY {
+  from {
+    transform: rotateX(60deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(60deg) rotateY(360deg);
+  }
+}
+
+/* ANIMATION SAO BẮN */
+@keyframes star {
+  0% {
+    transform: translate(-50%, -50%) translateX(0) scale(0.2);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translateX(30px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ANIMATION DI CHUYỂN PORTAL: Lướt liên tục không khựng, lệch xa hẳn sang bên trái */
+@keyframes floatX {
+  0% {
+    transform: translateX(
+      -110px
+    ); /* Đẩy xa hẳn sang bên trái cho hoành tráng */
+  }
+  50% {
+    transform: translateX(
+      15px
+    ); /* Lướt nhẹ sang bên phải chạm rìa danh sách kê */
+  }
+  100% {
+    transform: translateX(-110px); /* Quay lại bên trái cực mượt */
+  }
+}
+
+/* =============================================================================
+   🔔 VII. CSS CHUÔNG THÔNG BÁO VÀ DROPDOWN NHẬT KÝ (ĐỒNG BỘ THƯƠNG HIỆU)
+   ============================================================================= */
+.notification-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* 🔘 Nút Chuông Uiverse cao cấp */
+.notification-container .button {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f2eb; /* Đồng bộ nền nút bell cũ của ní */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ede5e0;
+}
+
+.notification-container .bell {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.notification-container .bell path {
+  fill: var(--dark-color);
+  transition: fill 0.3s ease;
+}
+
+/* Hiệu ứng Hover nút Chuông */
+.notification-container .button:hover {
+  background-color: rgba(255, 122, 69, 0.1); /* Chuyển màu cam mờ dịu mắt */
+  border-color: rgba(255, 122, 69, 0.25);
+  box-shadow: 0 4px 12px rgba(255, 122, 69, 0.1);
+}
+
+.notification-container .button:hover .bell {
+  animation: bellRing 0.9s both;
+}
+
+.notification-container .button:hover .bell path {
+  fill: var(--primary-color); /* Đổi icon sang Cam thương hiệu */
+}
+
+.notification-container .button:active {
+  transform: scale(0.92);
+}
+
+/* 🔴 Badge nổ số lượng thông báo hình tròn */
+.noti-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #ff4d4f; /* Màu đỏ san hô nổ bật */
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white); /* Tạo viền trắng tách biệt */
+  box-shadow: 0 2px 6px rgba(255, 77, 79, 0.4);
+  z-index: 5;
+  animation: badgePulse 2s infinite;
+}
+
+/* 📂 Khung Dropdown đổ xuống */
+.noti-dropdown {
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 340px;
+  background-color: var(--white);
+  border-radius: 14px; /* Đồng bộ border-radius hệ thống */
+  box-shadow: 0 10px 35px rgba(74, 62, 57, 0.15); /* Đổ bóng sâu cao cấp */
+  border: 1px solid #eae1dc;
+  display: none;
+  z-index: 1000;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
+  transform-origin: top right;
+}
+
+/* Trạng thái mở Dropdown kích hoạt bằng JS */
+.noti-dropdown.open {
+  display: block;
+  animation: notiScaleIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Tiêu đề Dropdown (Tone Trà sữa nhạt sang trọng) */
+.noti-header {
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #fbf8f6 0%, #f5f0ec 100%);
+  border-bottom: 1px solid #ede5e0;
+  font-weight: 700;
+  color: #4a3e39; /* Màu nâu đất đậm */
+  font-size: 13.5px;
+  letter-spacing: 0.3px;
+}
+
+/* Thùng chứa danh sách cuộn thông báo */
+.noti-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Định dạng thanh cuộn mượt cho danh sách thông báo */
+.noti-body::-webkit-scrollbar {
+  width: 5px;
+}
+.noti-body::-webkit-scrollbar-track {
+  background: #fdfdfd;
+}
+.noti-body::-webkit-scrollbar-thumb {
+  background: #eae1dc;
+  border-radius: 10px;
+}
+.noti-body::-webkit-scrollbar-thumb:hover {
+  background: #bfaea6;
+}
+
+/* 📄 Từng dòng nhật ký thông báo */
+.noti-item {
+  padding: 14px 18px;
+  border-bottom: 1px solid #fff6f2;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.noti-item:last-child {
+  border-bottom: none;
+}
+
+.noti-item:hover {
+  background-color: #fffbf9; /* Nền sáng ấm thương hiệu */
+}
+
+/* Thời gian Log */
+.noti-item .noti-time {
+  font-size: 11px;
+  color: #bfaea6;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Nội dung text */
+.noti-item .noti-text {
+  font-size: 13px;
+  color: var(--dark-color);
+  margin: 0;
+  line-height: 1.45;
+  font-weight: 400;
+}
+
+/* Biến đổi text nhẹ khi rỗng */
+.noti-empty-state {
+  padding: 30px 20px;
+  text-align: center;
+  color: #a89790;
+  font-size: 13px;
+  font-style: italic;
+}
+
+/* =============================================================================
+   🔥 BỘ HIỆU ỨNG CHUYỂN ĐỘNG BỔ SUNG (ANIMATIONS)
+   ============================================================================= */
+
+/* Nhịp đập nhẹ cho badge đỏ */
+@keyframes badgePulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 2px 10px rgba(255, 77, 79, 0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Bung mở dropdown góc phải mượt mà */
+@keyframes notiScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

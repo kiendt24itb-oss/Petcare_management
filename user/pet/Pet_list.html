@@ -1,0 +1,162 @@
+<link rel="stylesheet" href="Pet_list.css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+  <div class="pet-grid">
+    <div class="pet-card add-pet-trigger" id="openModalBtn">
+      <div class="add-icon-circle">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+      <span class="add-text">Thêm Bé Cưng</span>
+    </div>
+  </div>
+</div>
+
+<div class="pet-modal-overlay" id="petModal">
+  <div class="pet-modal-card">
+    <div class="modal-header">
+      <h3>Thêm Bé Cưng Mới</h3>
+      <button type="button" class="close-modal-btn" id="closeModalBtn">
+        &times;
+      </button>
+    </div>
+
+    <form id="formAddPet" class="modal-form-content">
+      <div class="modal-avatar-section">
+        <div class="modal-avatar-container">
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZmZmMWViIiByeD0iNTAiLz4KICA8ZyBmaWxsPSIjZmY3YTQ1Ij4KICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iNTgiIHI9IjE2Ii8+CiAgICA8Y2lyY2xlIGN4PSI5MCIgY3k9IjM4IiByPSI3Ii8+CiAgICA8cGF0aCBkPSJNNTAsNDQgQzQ1LDQ0IDQxLDQ4IDQxLDUzIEM0MSw2MCA1OSw2MCA1OSw1MyBDNTksNDggNTUsNDQgNTAsNDQgWiIvPgogICAgPGNpcmNsZSBjeD0iMjgiIGN5PSI0NiIgcj0iMTAiLz4KICAgIDxjaXJjbGUgY3g9IjcyIiBjeT0iNDYiIHI9IjEwIi8+CiAgICA8Y2lyY2xlIGN4PSIzNCIgY3k9IjI4IiByPSI4Ii8+CiAgICA8Y2lyY2xlIGN4PSI2NiIgY3k9IjI4IiByPSI4Ii8+CiAgPC9nPgo8L3N2Zz4="
+            alt="Mặc định"
+            id="modalPetAvatar"
+            class="modal-avatar-img"
+          />
+          <label class="modal-upload-badge">
+            <i class="fa-solid fa-camera"></i>
+            <input type="file" id="inputModalAvatar" accept="image/*" />
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-field-group">
+        <label class="modal-label">Mã thú cưng</label>
+        <input
+          type="text"
+          id="modalPetCode"
+          placeholder="Hệ thống tự sinh..."
+          class="modal-input modal-input-disabled"
+          disabled
+        />
+      </div>
+
+      <div class="modal-field-group">
+        <label class="modal-label">Tên thú cưng</label>
+        <input
+          type="text"
+          name="petName"
+          id="modalPetName"
+          placeholder="Nhập tên của bé..."
+          required
+          class="modal-input"
+        />
+      </div>
+
+      <div class="modal-field-row">
+        <div class="modal-field-group">
+          <label class="modal-label">Loài</label>
+          <div class="modal-select-wrapper">
+            <select
+              name="species"
+              id="modalSpecies"
+              class="modal-select"
+              required
+            >
+              <option value="" disabled selected hidden>Chọn loài...</option>
+              <option value="DOG">Chó</option>
+              <option value="CAT">Mèo</option>
+              <option value="OTHER">Khác</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-field-group">
+          <label class="modal-label">Chủng tộc / Giống</label>
+          <input
+            type="text"
+            name="breed"
+            id="modalBreed"
+            placeholder="Corgi, Poodle..."
+            class="modal-input"
+          />
+        </div>
+      </div>
+
+      <div class="modal-field-row">
+        <div class="modal-field-group">
+          <label class="modal-label">Tuổi (Tháng/Tuổi)</label>
+          <input
+            type="number"
+            name="age"
+            id="modalPetAge"
+            placeholder="Số tuổi..."
+            min="0"
+            max="50"
+            class="modal-input"
+          />
+        </div>
+        <div class="modal-field-group">
+          <label class="modal-label">Cân nặng (kg)</label>
+          <input
+            type="number"
+            name="weight"
+            id="modalWeight"
+            placeholder="Ví dụ: 4.5"
+            step="0.1"
+            min="0"
+            class="modal-input"
+          />
+        </div>
+      </div>
+
+      <div class="modal-field-group">
+        <label class="modal-label">Giới Tính</label>
+        <div class="modal-select-wrapper">
+          <select
+            name="gender"
+            id="modalPetGender"
+            class="modal-select"
+            required
+          >
+            <option value="" disabled selected hidden>
+              Giới tính của bé...
+            </option>
+            <option value="MALE">Đực (Male)</option>
+            <option value="FEMALE">Cái (Female)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-field-group">
+        <label class="modal-label">Ghi chú sức khỏe / Dị ứng</label>
+        <textarea
+          name="healthNote"
+          id="modalHealthNote"
+          placeholder="Bé có bị dị ứng thuốc, thức ăn hay đang có bệnh lý gì không..."
+          class="modal-textarea"
+          rows="2"
+        ></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="btnModalReset" class="modal-btn-secondary">
+          Đặt lại
+        </button>
+        <button type="submit" class="modal-btn-primary">
+          Lưu Thông Tin Bé
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="Pet_list.js"></script>

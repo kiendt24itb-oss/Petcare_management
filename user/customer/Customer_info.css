@@ -1,0 +1,330 @@
+/* ==========================================================================
+   🎨 KHAI BÁO BIẾN MÀU HỆ THỐNG PETCARE (FIX LỖI MẤT MÀU NÚT BẤM)
+   ========================================================================== */
+:root {
+  --primary-color: #ff7a45; /* Màu cam thương hiệu PetCare */
+  --primary-hover: #e06532; /* Màu cam đậm khi di chuột vào */
+  --dark-color: #4a3e39; /* Màu chữ nâu đen ấm áp */
+  --gray-text: #8c7e76; /* Màu chữ ghi xám */
+  --white: #ffffff; /* Màu nền trắng */
+}
+
+/* ==========================================================================
+   ✨ V. CSS CHUYÊN NGHIỆP CHO TRANG THÔNG TIN KHÁCH HÀNG (ĐÃ FIX THỌT NÚT)
+   ========================================================================== */
+.cstm-wrapper-full {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.cstm-card-layout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: var(--white);
+  overflow: hidden;
+}
+
+/* Cột trái: Sidebar Profile (Giảm padding dọc một chút để ôm vừa form) */
+.cstm-sidebar-profile {
+  flex: 0 0 260px;
+  background: linear-gradient(180deg, #fbf8f6 0%, #f5f0ec 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  border-right: 1px solid #ede5e0;
+  text-align: center;
+}
+
+.cstm-avatar-container {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.cstm-avatar-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--white);
+  box-shadow: 0 8px 24px rgba(255, 122, 69, 0.15);
+}
+
+.cstm-upload-badge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 32px;
+  height: 32px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.cstm-upload-badge:hover {
+  transform: scale(1.1);
+  background: var(--primary-hover);
+}
+
+.cstm-upload-badge input {
+  display: none;
+}
+
+.cstm-profile-name {
+  font-size: 17px;
+  color: #4a3e39;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.cstm-profile-status {
+  display: inline-block;
+  background: rgba(255, 122, 69, 0.1);
+  color: var(--primary-color);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cstm-profile-tip {
+  font-size: 11.5px;
+  color: var(--gray-text);
+  line-height: 1.5;
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Cột phải: Khu vực nhập liệu chính (Giảm padding tổng xuống 30px) */
+.cstm-main-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: var(--white);
+  justify-content: space-between;
+}
+
+.cstm-section-title {
+  font-size: 19px;
+  color: #4a3e39;
+  font-weight: 700;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #fff6f2;
+}
+
+/* Thu hẹp khoảng cách giữa các hàng từ 20px xuống 12px để tiết kiệm chiều cao */
+.cstm-grid-fields {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 25px;
+  flex-grow: 1;
+}
+
+.cstm-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.cstm-col-2 {
+  grid-column: span 2;
+}
+
+.cstm-label {
+  font-size: 12.5px;
+  color: #6b5e58;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Giảm nhẹ padding input từ 12px xuống 10px để form thon gọn hơn */
+.cstm-input,
+.cstm-select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #eae1dc;
+  background: #fdfdfd;
+  border-radius: 8px;
+  color: var(--dark-color);
+  font-size: 13.5px;
+  font-weight: 500;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cstm-input:focus,
+.cstm-select:focus {
+  border-color: var(--primary-color);
+  background: var(--white);
+  box-shadow: 0 4px 15px rgba(255, 122, 69, 0.08);
+}
+
+.cstm-input-disabled {
+  background: #f5f2eb !important;
+  border-color: #ede5e0 !important;
+  color: #a89790 !important;
+  cursor: not-allowed;
+  font-weight: 700;
+}
+
+.cstm-input::placeholder {
+  color: #bfaea6;
+  font-style: italic;
+  font-size: 12.5px;
+}
+
+.cstm-select-wrapper {
+  position: relative;
+}
+
+.cstm-select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.cstm-select-wrapper::after {
+  content: "▾";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #bfaea6;
+  pointer-events: none;
+  font-size: 15px;
+}
+
+.cstm-select:invalid {
+  color: #bfaea6;
+  font-style: italic;
+}
+
+/* Thanh hành động bám sát đáy, giảm margin hụt chiều cao */
+.cstm-actions-bar {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #f2ece8;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+/* Tối ưu lại kích thước nút bấm */
+.cstm-btn {
+  padding: 10px 28px;
+  border-radius: 20px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.cstm-btn-secondary {
+  background: #f5f2eb;
+  color: #6b5e58;
+  border: 1px solid #ede5e0;
+}
+
+.cstm-btn-secondary:hover {
+  background: #eae1dc;
+}
+
+.cstm-btn-primary {
+  background: var(--primary-color);
+  color: var(--white);
+  border: none;
+  box-shadow: 0 4px 14px rgba(255, 122, 69, 0.2);
+}
+
+.cstm-btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(224, 101, 50, 0.3);
+}
+
+.cstm-btn:active {
+  transform: scale(0.98);
+}
+
+/* Khung định vị nằm cố định ở góc trên bên phải màn hình */
+#pet-toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000; /* Đảm bảo luôn nổi lên trên cùng của Modal */
+  display: flex;
+  vertical-align: middle;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Định hình thanh Toast thông báo */
+.pet-toast {
+  background: #ffffff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 280px;
+  max-width: 400px;
+
+  /* Hiệu ứng: trượt vào trong 0.3s, đợi 2.7s rồi tự mờ dần biến mất trong 0.3s */
+  animation:
+    toastSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+    toastFadeOut 0.3s ease 2.7s forwards;
+}
+
+/* Phân biệt màu sắc theo loại thông báo */
+.pet-toast.success {
+  border-left: 6px solid #2ecc71;
+  color: #27ae60;
+}
+
+.pet-toast.error {
+  border-left: 6px solid #e74c3c;
+  color: #c0392b;
+}
+
+/* Định nghĩa hiệu ứng Animation chuyển động */
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastFadeOut {
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}

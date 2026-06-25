@@ -1,0 +1,136 @@
+<link rel="stylesheet" href="Customer_info.css" />
+
+<div class="cstm-wrapper-full">
+  <form
+    id="formUpdateCustomer"
+    class="cstm-card-layout"
+    onsubmit="event.preventDefault()"
+  >
+    <div class="cstm-sidebar-profile">
+      <div class="cstm-avatar-container">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZjlhOWUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWNmZWYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0idXJsKCNnKSIvPldjdXN0b21lcjxjaXJjbGUgY3g9IjUwIiBjeT0iNDIiIHI9IjE4IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI1LDc1IEMyNSw1OCA3NSw1OCA3NSw3NSIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg=="
+          alt="Customer Avatar"
+          id="customerAvatar"
+          class="cstm-avatar-img"
+        />
+        <label class="cstm-upload-badge">
+          📷
+          <input type="file" id="inputAvatar" accept="image/*" />
+        </label>
+      </div>
+
+      <div class="cstm-profile-header">
+        <h3 class="cstm-profile-name" id="profileName">Loading...</h3>
+        <span class="cstm-profile-status" id="profileStatus">Khách hàng</span>
+      </div>
+
+      <p class="cstm-profile-tip">
+        Thay đổi ảnh đại diện giúp nhân viên PetCare dễ dàng nhận diện bạn tại
+        cửa hàng.
+      </p>
+    </div>
+
+    <div class="cstm-main-form">
+      <h2 class="cstm-section-title">👤 Thông Tin Tài Khoản</h2>
+
+      <div class="cstm-grid-fields">
+        <div class="cstm-form-group cstm-col-2">
+          <label class="cstm-label">Mã thành viên</label>
+          <input
+            type="text"
+            id="customerId"
+            class="cstm-input cstm-input-disabled"
+            disabled
+          />
+        </div>
+
+        <div class="cstm-form-group">
+          <label class="cstm-label">Họ và Tên</label>
+          <input
+            type="text"
+            name="fullName"
+            id="fullName"
+            placeholder="Tên của bạn là..."
+            class="cstm-input"
+            required
+          />
+        </div>
+
+        <div class="cstm-form-group">
+          <label class="cstm-label">Tuổi</label>
+          <input
+            type="number"
+            name="age"
+            id="age"
+            placeholder="Tuổi của bạn là..."
+            min="1"
+            max="120"
+            class="cstm-input"
+            required
+          />
+        </div>
+
+        <div class="cstm-form-group">
+          <label class="cstm-label">Số Điện Thoại</label>
+          <input
+            type="tel"
+            name="phone"
+            id="phone"
+            placeholder="Số điện thoại của bạn là..."
+            class="cstm-input"
+            required
+          />
+        </div>
+
+        <div class="cstm-form-group">
+          <label class="cstm-label">Giới Tính</label>
+          <div class="cstm-select-wrapper">
+            <select name="gender" id="gender" class="cstm-select" required>
+              <option value="" disabled selected hidden>
+                Giới tính của bạn là...
+              </option>
+              <option value="MALE">Nam</option>
+              <option value="FEMALE">Nữ</option>
+              <option value="OTHER">Khác</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cstm-form-group cstm-col-2">
+          <label class="cstm-label">Địa Chỉ Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Nhập địa chỉ email mới của bạn..."
+            class="cstm-input"
+          />
+        </div>
+
+        <div class="cstm-form-group cstm-col-2">
+          <label class="cstm-label">Địa Chỉ Thường Trú</label>
+          <input
+            type="text"
+            name="address"
+            id="address"
+            placeholder="Địa chỉ hiện tại của bạn là..."
+            class="cstm-input"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="cstm-actions-bar">
+        <button type="button" id="btnReset" class="cstm-btn cstm-btn-secondary">
+          Đặt Lại
+        </button>
+        <button type="submit" class="cstm-btn cstm-btn-primary">
+          Lưu Thay Đổi
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="Customer_info.js"></script>

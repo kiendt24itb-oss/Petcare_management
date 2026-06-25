@@ -1,0 +1,46 @@
+<header class="navbar">
+  <div class="logo"><span>🐾</span> PetCare <span>Premium</span></div>
+
+  <nav class="nav-links">
+    <a href="#trang-chu" data-page="Home.html" class="active">Trang chủ</a>
+    <a href="#dich-vu" data-page="Services.html">Dịch vụ</a>
+    <a href="#ve-chung-toi" data-page="About.html">Về chúng tôi</a>
+  </nav>
+
+  <div class="auth-buttons" id="navAuthGroup" style="display: none">
+    <a
+      href="#"
+      onclick="
+        loadAuthComponent('login');
+        return false;
+      "
+      class="btn-login"
+      >Đăng nhập</a
+    >
+    <a
+      href="#"
+      onclick="
+        loadAuthComponent('register');
+        return false;
+      "
+      class="btn-register"
+      >Đăng ký</a
+    >
+  </div>
+
+  <div class="auth-buttons" id="navUserGroup" style="display: none">
+    <a href="/dashboard/Dashboard.html" class="btn-dashboard"
+      >Vào không gian của bạn</a
+    >
+
+    <a
+      href="#"
+      onclick="
+        handleLogout();
+        return false;
+      "
+      class="btn-logout"
+      >Đăng xuất</a
+    >
+  </div>
+</header>

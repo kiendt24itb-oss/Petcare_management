@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Lịch Hẹn - PetCare</title>
+    <link rel="stylesheet" href="Booking_list.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="bk-container">
+      <div class="bk-grid" id="booking-list-grid">
+        <div class="bk-card add-bk-trigger" id="openBkModalBtn">
+          <div class="add-icon-circle"><i class="fa-solid fa-plus"></i></div>
+          <span class="add-text">Đăng Ký Lịch Hẹn</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bk-modal-overlay" id="bookingModal">
+      <div class="bk-modal-card">
+        <div class="modal-header">
+          <h3 id="modal-title">✨ Đăng Ký Lịch Hẹn Đặt Chỗ</h3>
+          <button type="button" class="close-modal-btn" id="closeBkModalBtn">
+            &times;
+          </button>
+        </div>
+
+        <form id="formUpdateBooking" class="modal-form-content">
+          <input type="hidden" id="editingBookingId" value="" />
+
+          <div class="modal-field-group">
+            <label class="modal-label">
+              <i class="fa-regular fa-user"></i> Tài khoản đặt lịch
+            </label>
+            <div class="cstm-user-static-badge">
+              <div class="user-avatar-initial" id="user-avatar-initial">K</div>
+              <div class="user-info-text">
+                <div class="user-name" id="current-user-name">Đang tải...</div>
+                <div class="user-code" id="current-user-code">
+                  Mã khách hàng: ...
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-field-row">
+            <div class="modal-field-group">
+              <label class="modal-label">
+                <i class="fa-regular fa-calendar-days"></i> Chọn ngày hẹn
+              </label>
+              <input
+                type="date"
+                id="bookingDate"
+                class="modal-input"
+                required
+              />
+            </div>
+
+            <div class="modal-field-group">
+              <label class="modal-label">
+                <i class="fa-regular fa-clock"></i> Chọn khung giờ
+              </label>
+              <div style="display: flex; gap: 8px">
+                <select
+                  id="bookingHour"
+                  class="modal-select"
+                  required
+                  style="flex: 1"
+                ></select>
+
+                <select
+                  id="bookingMinute"
+                  class="modal-select"
+                  required
+                  style="flex: 1"
+                >
+                  <option value="00">00 phút</option>
+                  <option value="30">30 phút</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="dynamic-booking-section">
+            <div class="dynamic-header">
+              <label class="modal-label">
+                <i class="fa-solid fa-paw"></i> Thú cưng & Dịch vụ đăng ký
+              </label>
+              <button
+                type="button"
+                id="add-pet-service-btn"
+                class="btn-add-row-item"
+              >
+                <i class="fa-solid fa-plus"></i> Thêm bé & Dịch vụ
+              </button>
+            </div>
+
+            <div id="dynamic-booking-container"></div>
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-label">
+              <i class="fa-solid fa-credit-card"></i> Phương thức thanh toán
+            </label>
+            <div class="modal-select-wrapper">
+              <select id="paymentMethod" class="modal-select" required>
+                <option value="CASH" selected>
+                  💵 Tiền mặt (Thanh toán tại quầy khi hoàn thành)
+                </option>
+                <option value="TRANSFER">
+                  💳 Chuyển khoản ngân hàng / Quét mã QR tại quầy
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-label">
+              <i class="fa-regular fa-comment-dots"></i> Ghi chú lời nhắn gửi
+            </label>
+            <textarea
+              id="note"
+              placeholder="Ví dụ: Bé nhà mình hơi nhát người lạ, mong các bạn dỗ dành nhẹ nhàng..."
+              class="modal-textarea"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div class="modal-actions">
+            <button
+              type="button"
+              id="btnCancelBooking"
+              class="modal-btn-danger"
+              style="display: none"
+            >
+              Hủy Lịch Hẹn
+            </button>
+
+            <button
+              type="button"
+              id="btnBookingReset"
+              class="modal-btn-secondary"
+            >
+              Đóng lại
+            </button>
+
+            <button
+              type="submit"
+              id="btnBookingSubmit"
+              class="modal-btn-primary"
+            >
+              Đặt Lịch Ngay
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      function showLocalToast(msg, type = "success") {
+        alert((type === "success" ? "✅ " : "❌ ") + msg);
+      }
+    </script>
+    <script src="Booking_list.js"></script>
+  </body>
+</html>

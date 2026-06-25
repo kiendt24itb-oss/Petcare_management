@@ -1,0 +1,445 @@
+<!-- Đường dẫn CSS được tính từ index.html đi vào -->
+<link rel="stylesheet" href="component/Services.css" />
+
+<section class="page-header">
+  <h1>Gói Dịch Vụ <span>Đẳng Cấp</span></h1>
+  <p>
+    Hệ thống dịch vụ chuẩn 5 sao tích hợp công nghệ quản lý hiện đại. Minh bạch
+    bảng giá, quy trình khép kín, mang đến trải nghiệm nâng niu trọn vẹn nhất
+    cho thú cưng của bạn.
+  </p>
+</section>
+
+<section class="services-section">
+  <!-- SỬA Ở ĐÂY: Truyền thêm 'event' vào hàm để không bị lỗi trình duyệt -->
+  <div class="tab-container">
+    <button class="tab-btn active" onclick="switchTab(event, 'spa')">
+      ✂️ Spa & Làm Đẹp
+    </button>
+    <button class="tab-btn" onclick="switchTab(event, 'health')">
+      🏥 Y Tế & Sức Khỏe
+    </button>
+    <button class="tab-btn" onclick="switchTab(event, 'hotel')">
+      🏨 Khách Sạn 5 Sao
+    </button>
+  </div>
+
+  <div class="contents-wrapper">
+    <!-- TAB 1: SPA -->
+    <div id="spa" class="tab-content active">
+      <div class="service-row">
+        <div class="service-media">
+          <span class="service-badge">Đăng Ký Nhiều</span>
+          <img
+            src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=600"
+            alt="Spa basic"
+          />
+        </div>
+        <div class="service-info">
+          <h3>Spa Tắm Mát Thư Giãn Khử Mùi</h3>
+          <div class="service-meta-specs">
+            <span>⏱ 45 - 60 phút</span>
+            <span>🐶🐱 Mọi kích cỡ</span>
+            <span>🛡 Bảo hiểm dịch vụ</span>
+          </div>
+          <div class="service-price-tag">Từ 150.000đ <span>/ Lượt</span></div>
+
+          <table class="price-tier-table">
+            <tr>
+              <td>Trọng lượng</td>
+              <td>Dưới 5kg</td>
+              <td>5kg - 15kg</td>
+              <td>Trên 15kg</td>
+            </tr>
+            <tr>
+              <td>Giá gói</td>
+              <td>150.000đ</td>
+              <td>220.000đ</td>
+              <td>300.000đ</td>
+            </tr>
+          </table>
+
+          <p class="service-desc-detail">
+            Liệu trình tắm mát giải tỏa stress lý tưởng cho những bé nhút nhát
+            hoặc sợ nước. Chúng tôi sử dụng dòng sữa tắm hữu cơ tự nhiên nhập
+            khẩu trực tiếp từ Pháp, giúp dưỡng ẩm sâu, phục hồi hư tổn bề mặt tế
+            bào lông và loại bỏ triệt để mùi hôi khó chịu.
+          </p>
+          <ul class="feature-grid">
+            <li>Tắm sạch bọt tuyết siêu vi 2 lần</li>
+            <li>Vệ sinh sạch sâu ống tai chuyên dụng</li>
+            <li>Sấy và chải tơi loại bỏ lông rụng</li>
+            <li>Cắt dũa móng bo góc tròn an toàn</li>
+            <li>Khử mùi và vắt tuyến hôi nhẹ nhàng</li>
+            <li>Xịt nước hoa thảo mộc cao cấp</li>
+          </ul>
+          <div class="service-mini-review">
+            ⭐⭐⭐⭐⭐ "Bé Poodle nhà mình tắm về lông siêu thơm, sờ mềm mịn như
+            mây!" - Chị Mai Anh (Quận 1)
+          </div>
+          <button
+            class="btn-action-premium"
+            onclick="handleBooking('Spa Tắm Mát Thư Giãn')"
+          >
+            Đặt Lịch Ngay ➔
+          </button>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-media">
+          <span class="service-badge" style="background: #2ed573"
+            >Tạo Kiểu Đẹp</span
+          >
+          <img
+            src="https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&q=80&w=600"
+            alt="Combo biến hình"
+          />
+        </div>
+        <div class="service-info">
+          <h3>Combo Biến Hình Cắt Tỉa Toàn Diện</h3>
+          <div class="service-meta-specs">
+            <span>⏱ 90 - 120 phút</span>
+            <span>🐶🐱 Phù hợp thú cưng lông dài</span>
+            <span>✂ Chuyên viên Master thế giới</span>
+          </div>
+          <div class="service-price-tag">Từ 350.000đ <span>/ Lượt</span></div>
+
+          <table class="price-tier-table">
+            <tr>
+              <td>Trọng lượng</td>
+              <td>Dưới 5kg</td>
+              <td>5kg - 12kg</td>
+              <td>Trên 12kg</td>
+            </tr>
+            <tr>
+              <td>Giá gói</td>
+              <td>350.000đ</td>
+              <td>450.000đ</td>
+              <td>600.000đ</td>
+            </tr>
+          </table>
+
+          <p class="service-desc-detail">
+            Giải pháp "lột xác" diện mạo hoàn hảo. Các chuyên viên sở hữu kỹ
+            thuật kéo đỉnh cao sẽ tư vấn kỹ phom dáng phù hợp nhất với cấu trúc
+            xương mặt và chất lông thực tế của bé, đem lại vẻ ngoài đáng yêu
+            sang chảnh nhất.
+          </p>
+          <ul class="feature-grid">
+            <li>Bao gồm toàn bộ gói tắm mát</li>
+            <li>Tỉa lông tạo phom dáng nghệ thuật</li>
+            <li>Cạo vệ sinh bàn chân, bụng và hậu môn</li>
+            <li>Xử lý gỡ các búi lông vón cục lớn</li>
+            <li>Nhổ lông tai giảm thiểu ngứa tai</li>
+            <li>Thoa serum dưỡng mượt lông Collagen</li>
+          </ul>
+          <button
+            class="btn-action-premium"
+            onclick="handleBooking('Combo Biến Hình Cắt Tỉa')"
+          >
+            Đặt Lịch Ngay ➔
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Y TẾ -->
+    <div id="health" class="tab-content">
+      <div class="service-row">
+        <div class="service-media">
+          <span class="service-badge" style="background: #54a0ff">Định Kỳ</span>
+          <img
+            src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&q=80&w=600"
+            alt="Khám sức khỏe"
+          />
+        </div>
+        <div class="service-info">
+          <h3>Tầm Soát Sức Khỏe Tổng Quát</h3>
+          <div class="service-meta-specs">
+            <span>⏱ 30 - 45 phút</span>
+            <span>🩺 Bác sĩ túc trực 24/7</span>
+            <span>📊 Sổ bệnh án điện tử Cloud</span>
+          </div>
+          <div class="service-price-tag">200.000đ <span>/ Ca khám</span></div>
+          <p class="service-desc-detail">
+            Gói khám sàng lọc lâm sàng định kỳ giúp bảo vệ và phát hiện sớm các
+            mầm bệnh nguy hiểm tiềm ẩn liên quan đến hệ tim mạch, hô hấp, suy
+            thận mãn tính hoặc các vấn đề răng miệng nghiêm trọng đối với thú
+            cưng lớn tuổi.
+          </p>
+          <ul class="feature-grid">
+            <li>Kiểm tra răng miệng, nướu và khoang tai</li>
+            <li>Nghe tim phổi bằng ống nghe chuyên dụng</li>
+            <li>Sàng lọc ký sinh trùng ẩn sâu ngoài da</li>
+            <li>Đo chỉ số cân nặng tiêu chuẩn theo giống</li>
+            <li>Tư vấn thực đơn dinh dưỡng riêng biệt</li>
+            <li>Lập và đồng bộ sổ bệnh án lên app di động</li>
+          </ul>
+          <div class="service-mini-review">
+            ⭐⭐⭐⭐⭐ "Nhờ gói tầm soát này mà mình phát hiện sớm bé mèo bị sỏi
+            thận nhẹ để kịp thời điều trị ăn kiêng." - Anh Hoàng (Bình Thạnh)
+          </div>
+          <button
+            class="btn-action-premium"
+            onclick="handleBooking('Tầm Soát Sức Khỏe')"
+          >
+            Đặt Lịch Ngay ➔
+          </button>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-media">
+          <span class="service-badge" style="background: #ff9f43"
+            >Trọn Gói Tiết Kiệm</span
+          >
+          <img
+            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=600"
+            alt="Tiêm phòng"
+          />
+        </div>
+        <div class="service-info">
+          <h3>Trọn Gói Vắc Xin & Tẩy Giun Toàn Diện</h3>
+          <div class="service-meta-specs">
+            <span>⏱ 20 phút</span>
+            <span>🧪 Thuốc nhập khẩu chính ngạch Mỹ/Pháp</span>
+            <span>📲 SMS nhắc lịch tự động</span>
+          </div>
+          <div class="service-price-tag">450.000đ <span>/ Gói</span></div>
+          <p class="service-desc-detail">
+            Hệ thống phòng bệnh chủ động bằng vắc-xin đa bệnh nghiêm ngặt. Toàn
+            bộ quy trình tiêm chủng được bác sĩ trực tiếp theo dõi sát sao, cam
+            kết sử dụng thuốc được bảo quản lạnh chuẩn quốc tế để mang lại hiệu
+            quả kháng thể tốt nhất.
+          </p>
+          <ul class="feature-grid">
+            <li>Mũi tiêm phòng bệnh hiểm nghèo (5 bệnh/7 bệnh)</li>
+            <li>Uống viên xổ ký sinh trùng phổ rộng</li>
+            <li>Khám lâm sàng miễn phí trước tiêm</li>
+            <li>Theo dõi phản ứng sau tiêm tại chỗ 30 phút</li>
+            <li>Tự động cập nhật lịch lên app hệ thống</li>
+            <li>Tặng kèm bánh thưởng gặm sạch cao răng</li>
+          </ul>
+          <button
+            class="btn-action-premium"
+            onclick="handleBooking('Trọn Gói Vắc Xin')"
+          >
+            Đặt Lịch Ngay ➔
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: KHÁCH SẠN -->
+    <div id="hotel" class="tab-content">
+      <div class="service-row">
+        <div class="service-media">
+          <span class="service-badge">Kinh Tế</span>
+          <img
+            src="https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&q=80&w=600"
+            alt="Standard room"
+          />
+        </div>
+        <div class="service-info">
+          <h3>Phòng Tiêu Chuẩn (Standard Room)</h3>
+          <div class="service-meta-specs">
+            <span>🕒 Tính theo ngày</span>
+            <span>💨 Điều hòa & lọc ion âm âm trần</span>
+            <span>🥗 2 bữa ăn tiêu chuẩn</span>
+          </div>
+          <div class="service-price-tag">200.000đ <span>/ Ngày</span></div>
+          <p class="service-desc-detail">
+            Lựa chọn tối ưu ngân sách lý tưởng nhưng vẫn cam kết đem lại môi
+            trường sống sạch sẽ lý tưởng vượt trội. Hệ thống chuồng inox nhập
+            khẩu cao cấp chống khuẩn độc lập, thông thoáng và luôn giữ mức nhiệt
+            độ điều hòa lý tưởng.
+          </p>
+          <ul class="feature-grid">
+            <li>Phòng riêng được khử trùng tia UV định kỳ</li>
+            <li>Khẩu phần bữa ăn thiết kế khoa học</li>
+            <li>Dọn vệ sinh khay cát/bỉm lót 3 lần/ngày</li>
+            <li>Thời gian tự do vận động vui chơi 1 tiếng</li>
+            <li>Báo cáo video tình hình gửi chủ nuôi mỗi tối</li>
+            <li>Bác sĩ kiểm tra sức khỏe nhanh mỗi buổi sáng</li>
+          </ul>
+          <button
+            class="btn-action-premium"
+            onclick="handleBooking('Phòng Tiêu Chuẩn Standard')"
+          >
+            Đặt Lịch Ngay ➔
+          </button>
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-media">
+          <span
+            class="service-badge"
+            style="background: linear-gradient(135deg, #ff9f43, #ff5252)"
+            >Gợi Ý Cho Boss VIP</span
+          >
+          <img
+            src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&q=80&w=600"
+            alt="Vip room"
+          />
+        </div>
+        <div class="service-info">
+          <h3>Phòng Hoàng Gia Luxury VIP Premium</h3>
+          <div class="service-meta-specs">
+            <span>🕒 Tính theo ngày</span>
+            <span>🎥 Camera Full HD độc lập 24/7</span>
+            <span>🥩 Thực đơn cá nhân hóa</span>
+          </div>
+          <div class="service-price-tag">450.000đ <span>/ Ngày</span></div>
+          <p class="service-desc-detail">
+            Trải nghiệm đỉnh cao hoàng gia dành cho các "Boss" đại gia. Phòng
+            suite biệt lập bằng vách kính cường lực cách âm hoàn toàn. Chủ nuôi
+            được cung cấp tài khoản riêng để theo dõi livestream trực tiếp mọi
+            biểu cảm, hoạt động của thú cưng từ xa bất kỳ lúc nào.
+          </p>
+          <ul class="feature-grid">
+            <li>Phòng kính cỡ lớn Luxury, máy lạnh riêng biệt</li>
+            <li>Thực đơn Pate tươi cao cấp tự chọn vị</li>
+            <li>Luồng Live-camera HD xem thời gian thực</li>
+            <li>Trang bị tháp cào móng gỗ và đồ chơi trí tuệ</li>
+            <li>Khu vui chơi trải đệm cao su chống trượt ngã</li>
+            <li>Miễn phí combo tắm sấy thơm tho khi check-out</li>
+          </ul>
+          <div class="service-mini-review">
+            ⭐⭐⭐⭐⭐ "Mỗi lần đi công tác xa mình đều gửi bé ở đây, mở camera
+            lên ngắm bé chơi đùa rất yên tâm!" - Chị Vy (Quận 7)
+          </div>
+          <button
+            class="btn-action-premium"
+            onclick="handleBooking('Phòng Hoàng Gia VIP')"
+          >
+            Đặt Lịch Ngay ➔
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process-section">
+  <div class="process-title">
+    <h2>Quy Trình Chăm Sóc 4 Bước Khép Kín</h2>
+    <p>
+      Sự chuyên nghiệp chuẩn hóa trong từng công đoạn vận hành tại cửa tiệm của
+      chúng tôi.
+    </p>
+  </div>
+  <div class="process-grid">
+    <div class="process-card">
+      <div class="process-number">1</div>
+      <h4>Tiếp Nhận & Check-in</h4>
+      <p>
+        Quét mã hẹn đặt nhanh chóng qua app, chuyên viên kiểm tra trạng thái tâm
+        lý ban đầu của bé.
+      </p>
+    </div>
+    <div class="process-card">
+      <div class="process-number">2</div>
+      <h4>Thăm Khám Sơ Bộ</h4>
+      <p>
+        Bác sĩ thú y tiến hành đo thân nhiệt, kiểm tra lâm sàng tình trạng da
+        lông trước khi làm dịch vụ.
+      </p>
+    </div>
+    <div class="process-card">
+      <div class="process-number">3</div>
+      <h4>Thực Hiện Liệu Trình</h4>
+      <p>
+        Tiến hành spa, điều trị y tế hoặc đưa vào phòng lưu trú theo đúng tiêu
+        chuẩn nghiêm ngặt của gói.
+      </p>
+    </div>
+    <div class="process-card">
+      <div class="process-number">4</div>
+      <h4>Bàn Giao & Tư Vấn</h4>
+      <p>
+        Bàn giao bé, hướng dẫn chủ nuôi cách chăm sóc giữ mùi tại nhà và đồng bộ
+        hồ sơ lên mây cloud.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="policy-section">
+  <div class="policy-box">
+    <h3>⚠️ Chính Sách Vận Hành & Lưu Ý Quan Trọng</h3>
+    <ul>
+      <li>
+        <strong>Yêu cầu sức khỏe tối thiểu:</strong> Đối với dịch vụ lưu trú tại
+        Khách sạn, thú cưng phải được tiêm phòng đầy đủ ít nhất 2 mũi vắc xin và
+        không có dấu hiệu mắc các bệnh truyền nhiễm cấp tính.
+      </li>
+      <li>
+        <strong>Thời gian hủy lịch:</strong> Quý khách vui lòng thực hiện thao
+        tác hoàn/hủy lịch hẹn trên hệ thống tối thiểu trước 2 tiếng so với thời
+        gian đăng ký ban đầu để không bị tính phí phạt vận hành.
+      </li>
+      <li>
+        <strong>Trường hợp khẩn cấp:</strong> Trong quá trình lưu trú, nếu thú
+        cưng có bất kỳ dấu hiệu bất thường nào về sức khỏe, đội ngũ y tế sẽ lập
+        tức can thiệp và thông báo tự động qua số điện thoại đăng ký.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= MODULIZED SCRIPT CHỈ CHỨA LOGIC NỘI BỘ ================= -->
+<script>
+  // Sử dụng IIFE để tránh trùng lặp hoặc xung đột biến toàn cục với các file khác
+  (() => {
+    // Xử lý chuyển đổi Tab danh mục chính
+    window.switchTab = function (event, tabId) {
+      const buttons = document.querySelectorAll(".tab-btn");
+      buttons.forEach((btn) => btn.classList.remove("active"));
+
+      const contents = document.querySelectorAll(".tab-content");
+      contents.forEach((content) => content.classList.remove("active"));
+
+      event.currentTarget.classList.add("active");
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) {
+        targetContent.classList.add("active");
+      }
+    };
+
+    // ĐỒNG BỘ CHỨC NĂNG ĐẶT LỊCH VỚI TRẠNG THÁI LOGIN CỦA HEADER.JS
+    window.handleBooking = function (serviceName) {
+      // Đọc trực tiếp trạng thái đăng nhập từ localStorage mà Header.js lưu trữ
+      const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+      if (isLoggedIn) {
+        alert(
+          `Hệ thống: Chuyển hướng thành công sang màn đặt lịch chi tiết cho gói "${serviceName}".`,
+        );
+      } else {
+        alert(
+          `Hệ thống: Vui lòng ĐĂNG NHẬP tài khoản trước khi thực hiện chức năng đặt lịch gói "${serviceName}" bạn nhé!`,
+        );
+
+        // Gọi trực tiếp hàm nạp modal đăng nhập được định nghĩa toàn cục từ Header.js
+        if (typeof loadAuthComponent === "function") {
+          loadAuthComponent("login");
+        } else {
+          console.error(
+            "Lỗi: Hệ thống chưa nạp kịp thành phần quản lý tài khoản.",
+          );
+        }
+      }
+    };
+
+    // Chip Filter Tương Tác Phụ (Nếu có)
+    const chips = document.querySelectorAll(".filter-chip");
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        chips.forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+      });
+    });
+  })();
+</script>

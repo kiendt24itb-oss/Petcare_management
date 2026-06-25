@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="component/footer/Footer.css" />
+
+<footer class="main-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="logo-footer">
+        <span>🐾</span> PetCare <span>Premium</span>
+      </div>
+      <p>
+        Hệ sinh thái công nghệ quản lý và chăm sóc thú cưng hàng đầu. Mang lại
+        trải nghiệm cao cấp cho thú cưng nhà bạn.
+      </p>
+      <p>📍 123 Đường Ba Đình, Quận 1, TP. HCM</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Về Chúng Tôi</h3>
+      <ul>
+        <li><a href="#trang-chu" data-page="Home.html">Trang Chủ</a></li>
+        <li><a href="#ve-chung-toi" data-page="About.html">Thương Hiệu</a></li>
+        <li>
+          <a href="#dich-vu" data-page="Services.html">Đội Ngũ Y Bác Sĩ</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Dịch Vụ VIP</h3>
+      <ul>
+        <li><a href="#dich-vu" data-page="Services.html">Spa Bọt Tuyết</a></li>
+        <li>
+          <a href="#dich-vu" data-page="Services.html">Khách Sạn 5 Sao</a>
+        </li>
+        <li>
+          <a href="#dich-vu" data-page="Services.html">Cấp Cứu Y Tế 24/7</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Đăng Ký Ưu Đãi</h3>
+      <p>Để lại email để nhận voucher giảm giá 15% sớm nhất.</p>
+      <form
+        class="footer-cta-form"
+        onsubmit="
+          event.preventDefault();
+          alert(
+            'Đăng ký thành công! Hệ thống đã gửi mã voucher 15% vào email của bạn.',
+          );
+          this.reset();
+        "
+      >
+        <input type="email" placeholder="Email của bạn..." required />
+        <button type="submit">Gửi</button>
+      </form>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>
+      © 2026 Petcare Management Premium. Kết nối công nghệ - Trọn vẹn yêu
+      thương.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,143 @@
+<link
+  href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="DashboardOperation.css" />
+
+<div class="cstm-wrapper-full">
+  <div class="cstm-section-header">
+    <h2 class="cstm-section-title">
+      <i class="ri-dashboard-3-fill"></i> Giám Sát Hoạt Động Vận Hành Real-time
+    </h2>
+    <div class="dashboard-timestamp">
+      <span class="pulse-icon"></span>
+      <span
+        id="liveDate"
+        style="margin-right: 10px; color: var(--cstm-text-muted)"
+      ></span>
+      Cập nhật tự động: <strong id="liveClock">...</strong>
+    </div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card shadow-sm border-left-blue">
+      <div class="metric-body">
+        <div class="metric-info">
+          <span class="metric-label">Tổng Ca Tiếp Nhận (Hôm nay)</span>
+          <h3 class="metric-value" id="countTotal">...</h3>
+        </div>
+        <div class="metric-icon-box bg-light-blue">
+          <i class="ri-git-repository-line"></i>
+        </div>
+      </div>
+      <div class="metric-footer">
+        <span class="text-success"
+          ><i class="ri-arrow-up-line"></i> Tự động</span
+        >
+        cập nhật hệ thống
+      </div>
+    </div>
+
+    <div class="metric-card shadow-sm border-left-orange">
+      <div class="metric-body">
+        <div class="metric-info">
+          <span class="metric-label">Đang Chờ</span>
+          <h3 class="metric-value" id="countWaiting">...</h3>
+        </div>
+        <div class="metric-icon-box bg-light-orange">
+          <i class="ri-time-line"></i>
+        </div>
+      </div>
+      <div class="metric-footer">Hàng đợi điều phối trung tâm</div>
+    </div>
+
+    <div class="metric-card shadow-sm border-left-green">
+      <div class="metric-body">
+        <div class="metric-info">
+          <span class="metric-label">Đang Thực Hiện</span>
+          <h3 class="metric-value" id="countProcessing">...</h3>
+        </div>
+        <div class="metric-icon-box bg-light-green">
+          <i class="ri-play-circle-line"></i>
+        </div>
+      </div>
+      <div class="metric-footer">Ca đang xử lý tại các phòng ban</div>
+    </div>
+
+    <div class="metric-card shadow-sm border-left-teal">
+      <div class="metric-body">
+        <div class="metric-info">
+          <span class="metric-label">Công Suất Phòng</span>
+          <h3 class="metric-value" id="countHotel">...</h3>
+        </div>
+        <div class="metric-icon-box bg-light-teal">
+          <i class="ri-hotel-bed-line"></i>
+        </div>
+      </div>
+      <div class="metric-footer">
+        Sức chứa hiện tại:
+        <strong class="text-teal" id="hotelAvailable"
+          >Đang nạp dữ liệu...</strong
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-main-layout">
+    <div class="layout-left-panel">
+      <div class="cstm-data-section">
+        <div class="panel-inner-header">
+          <div class="panel-inner-title">
+            <i class="ri-list-ordered"></i> Luồng Điều Phối Hoạt Động Trong Ngày
+          </div>
+          <div class="panel-filters">
+            <button class="filter-tag active" onclick="filterOperation('ALL')">
+              Tất Cả
+            </button>
+            <button
+              class="filter-tag text-orange"
+              onclick="filterOperation('WAITING')"
+            >
+              ⏳ Đang Chờ
+            </button>
+            <button
+              class="filter-tag text-green"
+              onclick="filterOperation('PROCESSING')"
+            >
+              ⚙️ Đang Làm
+            </button>
+          </div>
+        </div>
+
+        <div class="cstm-table-wrapper">
+          <table class="cstm-table">
+            <thead>
+              <tr>
+                <th width="12%">Mã Đơn</th>
+                <th width="25%">Thú Cưng / Chủ</th>
+                <th width="25%">Dịch Vụ Chỉ Định</th>
+                <th width="13%">Trạng Thái</th>
+                <th width="25%">Nhân Viên Phụ Trách</th>
+              </tr>
+            </thead>
+            <tbody id="tableOperationBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="layout-right-panel">
+      <div class="cstm-data-section log-section">
+        <div class="panel-inner-header">
+          <div class="panel-inner-title">
+            <i class="ri-history-line"></i> Nhật Ký Biến Động Vận Hành
+          </div>
+        </div>
+        <div class="timeline-container" id="timelineLogs"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="pet-toast-container"></div>
+<script src="DashboardOperation.js"></script>

@@ -1,0 +1,181 @@
+<link rel="stylesheet" href="CustomerManagement.css" />
+
+<div class="cstm-wrapper-full">
+  <div class="cstm-section-header">
+    <h2 class="cstm-section-title">
+      <i class="ri-user-heart-fill"></i> Quản Lý Tài Khoản Khách Hàng
+    </h2>
+
+    <div class="cstm-header-actions">
+      <div class="cstm-custom-dropdown" id="dropdownFilterRank">
+        <div class="dropdown-selected" id="dropdownSelectedText">
+          Tất cả trạng thái
+          <i class="ri-arrow-down-s-line dropdown-icon-arrow"></i>
+        </div>
+        <ul class="dropdown-list" id="dropdownListOptions">
+          <li data-value="ALL" class="active">Tất cả trạng thái</li>
+          <li data-value="AUTO">Tự Động Duyệt</li>
+          <li data-value="MANUAL">Chờ Duyệt (>= 3 vi phạm)</li>
+          <li data-value="LOCKED">Đã Khóa Tài Khoản</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cstm-data-section">
+    <div class="cstm-table-wrapper">
+      <table class="cstm-table">
+        <thead>
+          <tr>
+            <th style="white-space: nowrap">Mã KH</th>
+            <th>Tên Khách Hàng</th>
+            <th>Email Liên Hệ</th>
+            <th>Số Điện Thoại</th>
+            <th>Thú Cưng Sở Hữu</th>
+            <th class="text-center">Số Lần Vi Phạm</th>
+            <th>Chế Độ Duyệt</th>
+            <th class="text-center">Hành Động</th>
+          </tr>
+        </thead>
+        <tbody id="tableCustomerBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="customerModal" class="cstm-modal">
+  <div class="cstm-modal-content">
+    <div class="cstm-modal-header">
+      <h3 id="modalTitle">
+        <i class="ri-user-search-line"></i> Hồ Sơ Chi Tiết Khách Hàng
+      </h3>
+      <span class="cstm-modal-close" id="btnCloseModal">&times;</span>
+    </div>
+
+    <div class="cstm-modal-body-scroll">
+      <form id="formCustomer">
+        <input type="hidden" id="customerId" />
+
+        <div class="avatar-preview-wrapper">
+          <div class="cstm-avatar-container">
+            <img
+              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZjlhOWUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWNmZWYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0idXJsKCNnKSIvPldjdXN0b21lcjxjaXJjbGUgY3g9IjUwIiBjeT0iNDIiIHI9IjE4IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI1LDc1IEMyNSw1OCA3NSw1OCA3NSw3NSIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg=="
+              alt="Customer Avatar"
+              id="customerAvatarView"
+              class="cstm-avatar-img"
+            />
+            <label class="cstm-upload-badge" for="inputAvatar">
+              📷
+              <input
+                type="file"
+                id="inputAvatar"
+                accept="image/*"
+                style="display: none"
+              />
+            </label>
+          </div>
+          <span class="avatar-label-tag">Ảnh đại diện khách hàng</span>
+        </div>
+
+        <div class="form-group">
+          <label for="customerName">Họ và Tên Khách Hàng</label>
+          <input
+            type="text"
+            id="customerName"
+            readonly
+            class="readonly-field"
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="customerEmail">Địa chỉ Email</label>
+            <input
+              type="email"
+              id="customerEmail"
+              readonly
+              class="readonly-field"
+            />
+          </div>
+          <div class="form-group">
+            <label for="customerPhone">Số Điện Thoại</label>
+            <input
+              type="tel"
+              id="customerPhone"
+              readonly
+              class="readonly-field"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="customerAddress">Địa Chỉ</label>
+          <input
+            type="text"
+            id="customerAddress"
+            readonly
+            class="readonly-field"
+          />
+        </div>
+
+        <div class="form-group alert-violation-box">
+          <label
+            for="customerViolations"
+            style="
+              color: #ff5a5f;
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              font-weight: 700;
+            "
+          >
+            <i class="ri-error-warning-fill"></i> Số Lần Vi Phạm Quy Định Hệ
+            Thống
+          </label>
+          <input
+            type="number"
+            id="customerViolations"
+            readonly
+            class="readonly-field text-danger-weight"
+          />
+          <small class="hint-text">
+            * Hệ thống tự động đếm dựa trên lịch đặt bị boom. Gồm 3 bậc: >=3 lần
+            duyệt tay, >=5 lần khóa hẳn.
+          </small>
+        </div>
+
+        <div class="form-group admin-action-box">
+          <label for="accountStatus" style="color: #1d39c4; font-weight: 700"
+            >Can Thiệp Trạng Thái Tài Khoản (Admin)</label
+          >
+          <select id="accountStatus">
+            <option value="ACTIVE">🔓 Đang hoạt động (ACTIVE)</option>
+            <option value="LOCKED">🔒 Khóa tài khoản khách (LOCKED)</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div class="cstm-modal-footer">
+      <button
+        type="button"
+        class="cstm-action-btn btn-view"
+        id="btnCancelModal"
+      >
+        Đóng lại
+      </button>
+      <button
+        type="submit"
+        form="formCustomer"
+        class="cstm-action-btn btn-approve"
+        style="background-color: var(--cstm-primary); color: white"
+      >
+        Cập nhật trạng thái
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="pet-toast-container"></div>
+
+<script src="CustomerManagement.js"></script>

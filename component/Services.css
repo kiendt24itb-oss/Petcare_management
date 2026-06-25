@@ -1,0 +1,414 @@
+/* --- RESET STYLES & GENERAL --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --primary-color: #ff7a45;
+  --primary-hover: #e06532;
+  --dark-color: #1f1f1f;
+  --gray-text: #666666;
+  --light-bg: #fffbf9;
+  --white: #ffffff;
+  --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 20px 40px rgba(255, 122, 69, 0.08);
+  --shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.12);
+  --border-radius: 24px;
+}
+
+body {
+  background-color: #fafafa;
+  color: var(--dark-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* --- 1. HERO HEADER CHI TIẾT DỊCH VỤ --- */
+.page-header {
+  text-align: center;
+  /* Giảm padding-top từ 180px xuống 60px vì khoảng cách đã được Header chung xử lý */
+  padding: 60px 8% 60px 8%;
+  background: radial-gradient(
+    circle at top right,
+    var(--light-bg) 0%,
+    #fafafa 70%
+  );
+  position: relative;
+}
+.page-header h1 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: -1px;
+}
+.page-header h1 span {
+  color: var(--primary-color);
+}
+.page-header p {
+  color: var(--gray-text);
+  font-size: 18px;
+  max-width: 650px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+/* --- 2. PREMIUM TAB NAVIGATION --- */
+.tab-container {
+  display: flex;
+  justify-content: center;
+  background-color: #eeeeee;
+  padding: 6px;
+  border-radius: 40px;
+  max-width: 750px;
+  margin: 0 auto 40px auto;
+}
+.tab-btn {
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  background: transparent;
+  color: #555;
+  border: none;
+  border-radius: 35px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.tab-btn.active {
+  background-color: var(--white);
+  color: var(--primary-color);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* Bộ lọc phụ bổ sung kích thước thú cưng */
+.filter-pet-type {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 50px;
+}
+.filter-chip {
+  padding: 8px 20px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.filter-chip.active,
+.filter-chip:hover {
+  background-color: var(--dark-color);
+  color: var(--white);
+  border-color: var(--dark-color);
+}
+
+/* --- 3. SERVICES CONTENT GRID --- */
+.services-section {
+  padding: 0 8% 60px 8%;
+}
+.tab-content {
+  display: none;
+}
+.tab-content.active {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  animation: slideUp 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- 4. ASYMMETRIC SERVICE BLOCK (CHI TIẾT DÒNG) --- */
+.service-row {
+  display: flex;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+.service-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.service-media {
+  flex: 1.1;
+  position: relative;
+  min-height: 480px;
+  overflow: hidden;
+}
+.service-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.service-row:hover .service-media img {
+  transform: scale(1.04);
+}
+
+.service-badge {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 2;
+}
+
+.service-info {
+  flex: 1;
+  padding: 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.service-info h3 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.service-meta-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #999;
+}
+.service-meta-specs span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.service-price-tag {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.service-price-tag span {
+  font-size: 14px;
+  color: var(--gray-text);
+  font-weight: normal;
+}
+
+/* Bảng giá chi tiết theo cân nặng nâng tầm Premium */
+.price-tier-table {
+  width: 100%;
+  margin-bottom: 15px;
+  border-collapse: collapse;
+  font-size: 12px;
+  background: #fdfdfd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.price-tier-table td {
+  padding: 6px 12px;
+  border: 1px solid #f0f0f0;
+}
+.price-tier-table tr:first-child {
+  font-weight: bold;
+  background-color: #f7f7f7;
+}
+
+.service-desc-detail {
+  font-size: 14px;
+  color: var(--gray-text);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 25px;
+  list-style: none;
+}
+.feature-grid li {
+  font-size: 13px;
+  color: var(--dark-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.feature-grid li::before {
+  content: "✓";
+  color: #2ed573;
+  font-weight: bold;
+}
+
+/* Khối Review nhỏ bên trong dịch vụ */
+.service-mini-review {
+  background-color: #fffaf0;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 25px;
+  border-left: 3px solid #ffba08;
+}
+
+.btn-action-premium {
+  background-color: var(--dark-color);
+  color: var(--white);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: all 0.3s ease;
+}
+.btn-action-premium:hover {
+  background-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 122, 69, 0.35);
+}
+
+/* --- 5. KHỐI QUY TRÌNH CHĂM SÓC --- */
+.process-section {
+  background-color: var(--light-bg);
+  padding: 80px 8%;
+}
+.process-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.process-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+.process-card {
+  background: var(--white);
+  padding: 30px 25px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  position: relative;
+}
+.process-number {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin: 0 auto 20px auto;
+}
+.process-card h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.process-card p {
+  font-size: 13px;
+  color: var(--gray-text);
+}
+
+/* --- 6. KHỐI CHÍNH SÁCH & LƯU Ý --- */
+.policy-section {
+  padding: 80px 8%;
+  background-color: var(--white);
+}
+.policy-box {
+  background-color: #f9f9f9;
+  border-left: 4px solid var(--primary-color);
+  padding: 30px;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+.policy-box h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+.policy-box ul {
+  list-style-type: none;
+}
+.policy-box ul li {
+  font-size: 14px;
+  color: var(--gray-text);
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+}
+.policy-box ul li::before {
+  content: "•";
+  color: var(--primary-color);
+  font-weight: bold;
+  font-size: 18px;
+  position: absolute;
+  left: 0;
+  top: -2px;
+}
+
+/* --- 7. RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 992px) {
+  .service-row,
+  .service-row:nth-child(even) {
+    flex-direction: column;
+  }
+  .process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 576px) {
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+#globalHeaderContainer {
+  /* Giả sử thanh menu của bạn cao 70px, hãy set trước chiều cao này */
+  min-height: 70px;
+  display: block;
+  /* Thêm màu nền trùng với màu menu để lúc chưa load xong nhìn vẫn mượt */
+  background-color: #ffffff;
+}

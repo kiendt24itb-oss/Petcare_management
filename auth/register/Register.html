@@ -1,0 +1,93 @@
+<link rel="stylesheet" href="/auth/register/Register.css" />
+
+<div class="pet-auth-overlay" id="authOverlay" onclick="closeAuthModal(event)">
+  <div class="pet-auth-modal">
+    <img
+      src="../../uploads/cat_top.png"
+      class="real-pet-corner pet-corner-top-right"
+      alt="Cat"
+    />
+    <img
+      src="../../uploads/dog.png"
+      class="real-pet-corner pet-corner-bottom-left"
+      alt="Dog"
+    />
+    <img
+      src="../../uploads/cat_bot.png"
+      class="real-pet-corner pet-corner-bottom-right"
+      alt="Cat"
+    />
+
+    <div class="pet-auth-logo">🐾 PETCARE</div>
+    <h2 class="pet-auth-title">Tạo Tài Khoản ✨</h2>
+
+    <form onsubmit="submitRegister(event)">
+      <div class="pet-input-group">
+        <label><span class="label-icon">👤</span>Tên đăng nhập</label>
+        <div class="pet-input-wrapper">
+          <input
+            type="text"
+            id="regUsername"
+            placeholder="Nhập tên đăng nhập mong muốn"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="pet-input-group">
+        <label><span class="label-icon">✉️</span>Địa chỉ Email</label>
+        <div class="pet-input-wrapper">
+          <input
+            type="email"
+            id="regEmail"
+            placeholder="Nhập địa chỉ Email của bạn"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="pet-input-row">
+        <div class="pet-input-group">
+          <label><span class="label-icon">🔒</span>Mật khẩu</label>
+          <div class="pet-input-wrapper">
+            <input
+              type="password"
+              id="regPwd"
+              placeholder="Mật khẩu"
+              required
+            />
+            <span class="toggle-password" onclick="togglePwd('regPwd')"
+              >👁️</span
+            >
+          </div>
+        </div>
+
+        <div class="pet-input-group">
+          <label><span class="label-icon">✔️</span>Xác nhận</label>
+          <div class="pet-input-wrapper">
+            <input
+              type="password"
+              id="confirmPwd"
+              placeholder="Nhập lại"
+              required
+            />
+            <span class="toggle-password" onclick="togglePwd('confirmPwd')"
+              >👁️</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="pet-auth-btn">ĐĂNG KÝ NGAY</button>
+    </form>
+
+    <div class="pet-auth-switch">
+      Đã có tài khoản?
+      <a href="javascript:void(0)" onclick="loadAuthComponent('login')"
+        >ĐĂNG NHẬP NGAY</a
+      >
+    </div>
+  </div>
+</div>
+<div id="pet-toast-container"></div>
+<script src="/auth/register/Register.js"></script>

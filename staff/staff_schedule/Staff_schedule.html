@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lịch Trình Làm Việc Nhân Viên - PetCare</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="Staff_schedule.css" />
+  </head>
+  <body>
+    <!-- Container Toast thông báo -->
+    <div id="pet-toast-container"></div>
+
+    <div class="schedule-container">
+      <!-- TIÊU ĐỀ & BỘ LỌC NHANH -->
+      <div class="schedule-header">
+        <div>
+          <h2>
+            <i
+              class="fa-regular fa-calendar-check"
+              style="color: var(--primary-color)"
+            ></i>
+            Lịch Trình Công Việc Đã Giao
+          </h2>
+          <p>Quản lý và cập nhật tiến độ chăm sóc thú cưng của khách hàng</p>
+        </div>
+        <!-- Bộ lọc trạng thái đơn -->
+        <div class="filter-group">
+          <button class="btn-filter active" data-filter="ALL">Tất cả</button>
+          <button class="btn-filter" data-filter="WAITING">Đang đợi</button>
+          <button class="btn-filter" data-filter="PROCESSING">Đang làm</button>
+          <button class="btn-filter" data-filter="COMPLETED">Đã xong</button>
+        </div>
+      </div>
+
+      <!-- LƯỚI DANH SÁCH LỊCH HẸN -->
+      <div class="booking-grid" id="booking-grid-list">
+        <!-- Dữ liệu demo từ JS sẽ tự động render vào đây -->
+      </div>
+    </div>
+
+    <!-- ============================================================================= -->
+    <!-- 👁️ MODAL XEM CHI TIẾT & XỬ LÝ ĐƠN (TẬN DỤNG TỪ FORM CLIENT) -->
+    <!-- ============================================================================= -->
+    <div class="modal-overlay" id="task-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>
+            <i class="fa-solid fa-file-invoice"></i> Chi Tiết Lịch Hẹn
+            <span id="md-booking-id">#BC-1002</span>
+          </h3>
+          <span class="close-modal-btn" id="close-modal">&times;</span>
+        </div>
+
+        <div class="modal-body">
+          <!-- Thông tin khách & Pet -->
+          <div class="info-section-grid">
+            <div>
+              <label><i class="fa-solid fa-user"></i> Chủ nuôi:</label>
+              <p id="md-customer-name">Nguyễn Văn A</p>
+            </div>
+            <div>
+              <label><i class="fa-solid fa-phone"></i> Số điện thoại:</label>
+              <p id="md-customer-phone">0905 123 456</p>
+            </div>
+            <div>
+              <label><i class="fa-solid fa-paw"></i> Thú cưng:</label>
+              <p id="md-pet-info">Cún Poodle - Bim Bim (Sức khỏe tốt)</p>
+            </div>
+            <div>
+              <label><i class="fa-solid fa-bell"></i> Trạng thái đơn:</label>
+              <p><span class="badge" id="md-status-badge">Đang đợi</span></p>
+            </div>
+          </div>
+
+          <hr class="modal-divider" />
+
+          <!-- Chi tiết dịch vụ & Thời gian -->
+          <div class="service-detail-box">
+            <h4>Dịch vụ đã đặt:</h4>
+            <div class="service-row">
+              <span id="md-service-name"
+                >Combo Tắm Rửa + Cắt Tỉa Lông Toàn Diện</span
+              >
+              <span class="price-tag" id="md-service-price">350.000đ</span>
+            </div>
+            <div class="time-row">
+              <i class="fa-regular fa-clock"></i> Thời gian hẹn:
+              <b id="md-booking-time">14:30 - 15/06/2026</b>
+            </div>
+          </div>
+
+          <!-- Ghi chú của khách -->
+          <div class="customer-note">
+            <label
+              ><i class="fa-regular fa-comment-dots"></i> Ghi chú của
+              khách:</label
+            >
+            <p id="md-customer-note">
+              "Bé hơi nhát nước, nhờ các anh/chị tắm nhẹ tay giúp em ạ."
+            </p>
+          </div>
+        </div>
+
+        <!-- NHÓM NÚT HÀNH ĐỘNG DÀNH RIÊNG CHO NHÂN VIÊN -->
+        <div class="modal-footer">
+          <button id="btn-cancel-task" class="btn-action btn-danger">
+            <i class="fa-solid fa-phone-slash"></i> Hủy lịch (Đã gọi điện khách)
+          </button>
+          <div class="right-buttons">
+            <button id="btn-start-task" class="btn-action btn-success">
+              <i class="fa-solid fa-play"></i> Bắt đầu làm
+            </button>
+            <button id="btn-complete-task" class="btn-action btn-primary">
+              <i class="fa-solid fa-check-double"></i> Hoàn thành ca
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="Staff_schedule.js"></script>
+  </body>
+</html>

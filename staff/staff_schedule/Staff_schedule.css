@@ -1,0 +1,385 @@
+:root {
+  --primary-color: #ff6600;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --info-color: #3b82f6;
+  --bg-dashboard: #f1f5f9;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-dashboard);
+  padding: 24px;
+  color: var(--text-main);
+}
+
+.schedule-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header & Bộ lọc */
+.schedule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.schedule-header h2 {
+  font-size: 22px;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+.schedule-header p {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.filter-group {
+  display: flex;
+  background: #e2e8f0;
+  padding: 4px;
+  border-radius: 8px;
+  gap: 4px;
+}
+.btn-filter {
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-muted);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+.btn-filter.active,
+.btn-filter:hover {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Lưới danh sách Card đơn đặt lịch */
+.booking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.booking-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.booking-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Border chỉ định trạng thái ở rìa trái Card */
+.booking-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: #cbd5e1;
+}
+.booking-card.WAITING::before {
+  background: var(--info-color);
+}
+.booking-card.PROCESSING::before {
+  background: var(--primary-color);
+}
+.booking-card.COMPLETED::before {
+  background: var(--success-color);
+}
+.booking-card.CANCELLED::before {
+  background: var(--danger-color);
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.booking-id {
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* Badge Trạng thái */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge.WAITING {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.badge.PROCESSING {
+  background: #ffedd5;
+  color: #9a3412;
+}
+.badge.COMPLETED {
+  background: #d1fae5;
+  color: #065f46;
+}
+.badge.CANCELLED {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.card-pet {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+.card-service {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.card-bottom {
+  border-top: 1px dashed var(--border-color);
+  padding-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-main);
+}
+
+/* ============================================================================= */
+/* 🕶️ CSS MODAL CHI TIẾT LỊCH HẸN */
+/* ============================================================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  animation: scaleUp 0.25s ease;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+@keyframes scaleUp {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+.close-modal-btn {
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.close-modal-btn:hover {
+  color: var(--danger-color);
+}
+
+.modal-body {
+  padding: 24px;
+}
+.info-section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.info-section-grid label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+.info-section-grid p {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.modal-divider {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 16px 0;
+}
+
+.service-detail-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.service-detail-box h4 {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.price-tag {
+  color: var(--primary-color);
+}
+.time-row {
+  font-size: 13px;
+  color: #475569;
+}
+
+.customer-note {
+  background: #fffbeb;
+  border-left: 4px solid var(--primary-color);
+  padding: 12px;
+  border-radius: 4px;
+}
+.customer-note label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #b45309;
+}
+.customer-note p {
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Nhóm nút ở footer modal */
+.modal-footer {
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 16px 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.right-buttons {
+  display: flex;
+  gap: 10px;
+}
+.btn-action {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-success {
+  background: var(--success-color);
+  color: white;
+}
+.btn-primary {
+  background: var(--info-color);
+  color: white;
+}
+.btn-danger {
+  background: #fee2e2;
+  color: var(--danger-color);
+}
+.btn-danger:hover {
+  background: var(--danger-color);
+  color: white;
+}
+.btn-action:disabled {
+  background: #cbd5e1;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Toast */
+#pet-toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+.pet-toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  border-left: 4px solid var(--success-color);
+  animation: slideIn 0.3s ease;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

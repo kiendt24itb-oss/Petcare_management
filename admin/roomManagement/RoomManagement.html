@@ -1,0 +1,143 @@
+<link rel="stylesheet" href="RoomManagement.css" />
+
+<div class="cstm-wrapper-full">
+  <div class="cstm-section-header">
+    <h2 class="cstm-section-title">
+      <i class="ri-door-open-fill"></i> Hệ Thống Không Gian & Vị Trí Vận Hành
+    </h2>
+
+    <div class="cstm-header-actions">
+      <div class="cstm-custom-dropdown" id="dropdownFilterCategory">
+        <div class="dropdown-selected" id="dropdownSelectedText">
+          Tất cả phân loại
+          <i class="ri-arrow-down-s-line dropdown-icon-arrow"></i>
+        </div>
+        <ul class="dropdown-list" id="dropdownListOptions">
+          <li data-value="ALL" class="active">Tất cả phân loại</li>
+          <li data-value="HEALTH">🏥 Khối Y Tế</li>
+          <li data-value="SPA">✂️ Khối Spa</li>
+          <li data-value="HOTEL">🏨 Khối Lưu Trú</li>
+        </ul>
+      </div>
+
+      <button class="cstm-btn-add" id="btnOpenAddModal">
+        <i class="ri-add-circle-line"></i> Thêm Không Gian Mới
+      </button>
+    </div>
+  </div>
+
+  <div class="room-grid-layout" id="roomGridBody"></div>
+</div>
+
+<div id="roomModal" class="cstm-modal">
+  <div class="cstm-modal-content">
+    <div class="cstm-modal-header">
+      <h3 id="modalTitle">
+        <i class="ri-add-box-line"></i> Khởi Tạo Không Gian
+      </h3>
+      <span class="cstm-modal-close" id="btnCloseModal">&times;</span>
+    </div>
+
+    <div class="cstm-modal-body-scroll">
+      <form id="formRoom">
+        <input type="hidden" id="roomId" />
+
+        <div class="form-group" id="viewCodeGroup" style="display: none">
+          <label>Mã Định Danh Hệ Thống</label>
+          <input
+            type="text"
+            id="roomCodeDisplay"
+            disabled
+            style="background-color: #faf6f2; color: #ff6b00; font-weight: 700"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="roomName"
+            >Tên Phòng / Vị Trí Vận Hành
+            <span style="color: red">*</span></label
+          >
+          <input
+            type="text"
+            id="roomName"
+            placeholder="Ví dụ: Căn hộ Standard 105, Bàn cắt lông 01..."
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="roomCategory">Phân Loại Khối</label>
+            <select
+              id="roomCategory"
+              onchange="handleCategoryChange(this.value)"
+            >
+              <option value="HEALTH">🏥 Y Tế (HEALTH)</option>
+              <option value="SPA">✂️ Làm Đẹp (SPA)</option>
+              <option value="HOTEL">🏨 Lưu Trú (HOTEL)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="roomTypeContainer">
+            <label for="roomType" id="lblRoomType"
+              >Kiểu Phòng Bệnh (HEALTH)</label
+            >
+            <select id="roomType" required></select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="roomStatus">Trạng Thái Vận Hành</label>
+          <select id="roomStatus">
+            <option value="AVAILABLE">🟢 Sẵn sàng tiếp nhận (AVAILABLE)</option>
+            <option value="MAINTENANCE">
+              🛠️ Đang bảo trì / Khóa (MAINTENANCE)
+            </option>
+
+            <option value="OCCUPIED" id="optOccupiedDisabled" disabled>
+              🔴 Đang có khách ở (OCCUPIED)
+            </option>
+
+            <option value="BUSY" id="optBusyDisabled" disabled>
+              🔴 Hệ thống ghi nhận bận (BUSY)
+            </option>
+
+            <option value="BOOKED" id="optBookedDisabled" disabled>
+              🟠 Đã được chọn gán dịch vụ (BOOKED)
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="roomNote">Ghi Chú Trang Thiết Bị / Tiện Nghi</label>
+          <textarea
+            id="roomNote"
+            rows="3"
+            placeholder="Ví dụ: Điều hòa 24/7, Camera giám sát, Đồ cào móng..."
+          ></textarea>
+        </div>
+      </form>
+    </div>
+
+    <div class="cstm-modal-footer">
+      <button
+        type="button"
+        class="cstm-action-btn btn-close-style"
+        id="btnCancelModal"
+      >
+        Đóng
+      </button>
+      <button
+        type="submit"
+        form="formRoom"
+        class="cstm-action-btn btn-save-style"
+      >
+        💾 Lưu Thay Đổi
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="pet-toast-container"></div>
+
+<script src="RoomManagement.js"></script>

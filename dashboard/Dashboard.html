@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Petcare Premium - Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Dashboard.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <div>
+        <div class="sidebar-brand">🐾 PetCare <span>Premium</span></div>
+
+        <div class="user-mini-profile">
+          <img
+            src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23ff9a9e'/><stop offset='100%' stop-color='%23fecfef'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><circle cx='50' cy='42' r='20' fill='%23fff'/><path d='M20,80 C20,60 80,60 80,80' fill='%23fff'/></svg>"
+            alt="Avatar"
+            class="user-mini-avatar"
+            id="userAvatar"
+          />
+          <div class="user-mini-info">
+            <h4 id="userProfileName">Đang tải...</h4>
+            <span id="userRoleBadge">-</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu" id="dynamicMenu"></ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <ul class="sidebar-menu">
+          <li><a href="#">🔑 Đổi mật khẩu</a></li>
+          <li>
+            <a href="#" id="btnLogout" style="color: #ff7a45; font-weight: bold"
+              >🚪 Đăng xuất</a
+            >
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="main-workspace">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="search-box" id="topbarSearchContainer">
+            <input
+              type="text"
+              id="topbarSearch"
+              placeholder="Tìm kiếm nhanh mọi thứ..."
+            />
+            <svg
+              class="search-explore-icon"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"
+              />
+            </svg>
+          </div>
+
+          <div class="pyramid-container">
+            <div class="pyramid-loader">
+              <div class="wrapper">
+                <span class="side side1"></span>
+                <span class="side side2"></span>
+                <span class="side side3"></span>
+                <span class="side side4"></span>
+                <span class="shadow"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="topbar-right-actions"
+          style="display: flex; align-items: center; gap: 20px"
+        >
+          <div
+            class="notification-container"
+            id="customerNotiBell"
+            style="display: none"
+          >
+            <button class="button" id="notiBellBtn" type="button">
+              <span class="noti-badge" id="notiCount" style="display: none"
+                >0</span
+              >
+              <svg viewBox="0 0 448 512" class="bell">
+                <path
+                  d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"
+                ></path>
+              </svg>
+            </button>
+
+            <div class="noti-dropdown" id="notiDropdown">
+              <div class="noti-header">🔔 Nhật ký hành trình dịch vụ</div>
+              <div class="noti-body" id="notiBodyList"></div>
+            </div>
+          </div>
+
+          <div class="portal-wrapper" id="cosmicPortalWrapper">
+            <div class="cosmic-portal-container">
+              <div class="quantum-ring ring-1"></div>
+              <div class="quantum-ring ring-2"></div>
+              <div class="quantum-ring ring-3"></div>
+
+              <div class="cosmic-core"></div>
+
+              <div class="star-particles">
+                <span class="star s1"></span>
+                <span class="star s2"></span>
+                <span class="star s3"></span>
+                <span class="star s4"></span>
+                <span class="star s5"></span>
+                <span class="star s6"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section
+        class="content-container"
+        id="contentWorkspace"
+        style="
+          width: 100%;
+          height: calc(100vh - 70px);
+          padding: 0;
+          margin: 0;
+          overflow: hidden;
+        "
+      >
+        <iframe
+          id="mainFrame"
+          name="mainFrame"
+          style="width: 100%; height: 100%; border: none; padding: 0; margin: 0"
+        ></iframe>
+      </section>
+    </main>
+
+    <script>
+      const wrapper = document.querySelector(".portal-wrapper");
+
+      if (wrapper) {
+        const duration = (Math.random() * 2 + 3).toFixed(2); // 3–5s
+        wrapper.style.animationDuration = duration + "s";
+        const distance = Math.floor(Math.random() * 10 + 20); // 20–30px
+
+        const styleTag = document.createElement("style");
+        styleTag.innerHTML = `
+          @keyframes floatMoveDynamic {
+            0%   { transform: translateX(-${distance}px); }
+            50%  { transform: translateX(${distance}px); }
+            100% { transform: translateX(-${distance}px); }
+          }
+        `;
+        document.head.appendChild(styleTag);
+        wrapper.style.animationName = "floatMoveDynamic";
+      }
+    </script>
+    <script src="Dashboard.js"></script>
+  </body>
+</html>

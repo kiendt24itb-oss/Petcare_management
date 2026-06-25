@@ -1,0 +1,126 @@
+/* --- BIẾN TOÀN CỤC (Nếu bạn chưa định nghĩa thì tui bổ sung để không bị lỗi màu) --- */
+:root {
+  --primary-color: #ff7a45;
+  --primary-hover: #e86832;
+  --white: #ffffff;
+  --text-dark: #333333;
+}
+
+/* --- TOÀN BỘ THANH NAVBAR CỐ ĐỊNH --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Căn giữa tất cả logo, menu, nút theo chiều dọc */
+  padding: 15px 8%; /* Tinh chỉnh lại padding cho thanh gọn gàng hơn */
+  z-index: 1000; /* Tăng z-index để chắc chắn đè lên mọi thành phần khác kể cả slider */
+  background-color: rgba(
+    38,
+    38,
+    38,
+    0.75
+  ); /* Tăng độ đậm nền một chút để nhìn rõ chữ trên hình nền */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-sizing: border-box; /* Đảm bảo padding không làm tràn chiều rộng màn hình */
+}
+
+/* --- KHU VỰC LOGO --- */
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo span {
+  color: var(--white);
+}
+
+/* --- KHU VỰC LINKS MENU --- */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+.nav-links a {
+  margin: 0 18px;
+  color: var(--white);
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary-color);
+}
+
+/* --- KHU VỰC CÁC NÚT LOGIC (CHƯA ĐĂNG NHẬP & ĐÃ ĐĂNG NHẬP) --- */
+.auth-buttons {
+  display: flex;
+  align-items: center; /* Đảm bảo 2 nút bên trong luôn luôn thẳng hàng ngang */
+}
+
+/* Nút Đăng nhập & Đăng xuất (Dạng chữ/link) */
+.auth-buttons .btn-login,
+.auth-buttons .btn-logout {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.auth-buttons .btn-login {
+  margin-right: 25px; /* Khoảng cách với nút Đăng ký */
+}
+.auth-buttons .btn-logout {
+  margin-left: 25px; /* Khoảng cách với nút Không gian của bạn */
+}
+.auth-buttons .btn-login:hover {
+  color: var(--primary-color);
+}
+.auth-buttons .btn-logout:hover {
+  color: #ff4d4d; /* Hover đổi màu đỏ cảnh báo đăng xuất */
+}
+
+/* Nút Đăng ký & Vào không gian (Dạng khối tròn Bo góc) */
+.auth-buttons .btn-register,
+.auth-buttons .btn-dashboard {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(255, 122, 69, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-buttons .btn-register:hover,
+.auth-buttons .btn-dashboard:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px); /* Hiệu ứng nhấc nhẹ nút khi di chuột */
+  box-shadow: 0 6px 20px rgba(255, 122, 69, 0.3);
+}
+
+/* --- SỬA LỖI ĐÈ NỀN CHO CÁC TRANG LANDING PAGE --- */
+/* Bạn thêm class này vào thẻ bọc đầu tiên của trang Home.html (Ví dụ: body hoặc thẻ section đầu tiên) 
+   để tránh việc thanh menu che mất chữ của Banner nhé */
+body {
+  padding-top: 80px; /* Tạo khoảng trống bằng đúng chiều cao của Header */
+}

@@ -1,0 +1,242 @@
+<link rel="stylesheet" href="StaffManagement.css" />
+<link
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+  rel="stylesheet"
+/>
+
+<div class="cstm-wrapper-full">
+  <div class="cstm-section-header">
+    <h2 class="cstm-section-title">
+      <i class="ri-team-fill"></i> Quản Lý Danh Sách Nhân Viên
+    </h2>
+
+    <div class="cstm-header-actions">
+      <div class="cstm-custom-dropdown" id="dropdownFilterRole">
+        <div class="dropdown-selected" id="dropdownSelectedText">
+          Tất cả chức vụ
+          <i class="ri-arrow-down-s-line dropdown-icon-arrow"></i>
+        </div>
+        <ul class="dropdown-list" id="dropdownListOptions"></ul>
+      </div>
+
+      <button class="cstm-btn-link" id="btnOpenAddModal">
+        <i class="ri-user-add-fill"></i> Thêm Nhân Viên Mới
+      </button>
+    </div>
+  </div>
+
+  <div class="cstm-attendance-widgets">
+    <div class="widget-card total-staff">
+      <div class="widget-icon"><i class="ri-group-line"></i></div>
+      <div class="widget-info">
+        <span class="widget-label">Tổng Nhân Sự</span>
+        <h3 class="widget-value" id="widgetTotalStaff">0</h3>
+      </div>
+    </div>
+    <div class="widget-card status-present">
+      <div class="widget-icon"><i class="ri-checkbox-circle-line"></i></div>
+      <div class="widget-info">
+        <span class="widget-label">Đã Có Mặt Hôm Nay</span>
+        <h3 class="widget-value" id="widgetPresent">0</h3>
+      </div>
+    </div>
+    <div class="widget-card status-late">
+      <div class="widget-icon"><i class="ri-time-line"></i></div>
+      <div class="widget-info">
+        <span class="widget-label">Đi Muộn Trong Tháng</span>
+        <h3 class="widget-value" id="widgetLateMonth">0</h3>
+      </div>
+    </div>
+    <div class="widget-card status-absent">
+      <div class="widget-icon"><i class="ri-user-unfollow-line"></i></div>
+      <div class="widget-info">
+        <span class="widget-label">Vắng Mặt Hôm Nay</span>
+        <h3 class="widget-value" id="widgetAbsentToday">0</h3>
+      </div>
+    </div>
+  </div>
+  <div class="cstm-data-section">
+    <div class="cstm-table-wrapper">
+      <table class="cstm-table">
+        <thead>
+          <tr>
+            <th style="width: 100px">Mã NV</th>
+            <th>Họ Và Tên</th>
+            <th>Chức Vụ / Vai Trò</th>
+            <th class="text-center" style="width: 180px">Check-in Hôm Nay</th>
+            <th class="text-center" style="width: 160px">
+              Đi Muộn / Nghỉ (Tháng)
+            </th>
+            <th>Số Điện Thoại</th>
+            <th class="text-center" style="width: 240px">Hành Động</th>
+          </tr>
+        </thead>
+        <tbody id="tableStaffBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="staffModal" class="cstm-modal">
+  <div class="cstm-modal-content layout-card-style">
+    <span class="cstm-modal-close" id="btnCloseModal">&times;</span>
+
+    <form
+      id="formStaff"
+      class="cstm-card-layout"
+      onsubmit="event.preventDefault()"
+    >
+      <input type="hidden" id="staffId" />
+
+      <div class="cstm-sidebar-profile">
+        <div class="cstm-avatar-container">
+          <img
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZjlhOWUiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWNmZWYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0idXJsKCNnKSIvPldjdXN0b21lcjxjaXJjbGUgY3g9IjUwIiBjeT0iNDIiIHI9IjE4IiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTI1LDc1IEMyNSw1OCA3NSw1OCA3NSw3NSIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg=="
+            alt="Staff Avatar"
+            id="staffAvatarPreview"
+            class="cstm-avatar-img"
+          />
+          <label class="cstm-upload-badge">
+            📷
+            <input type="file" id="inputStaffAvatar" accept="image/*" />
+          </label>
+        </div>
+
+        <div class="cstm-profile-header">
+          <h3 class="cstm-profile-name" id="profileStaffName">Họ và Tên</h3>
+          <span class="cstm-profile-status" id="profileStaffCode"
+            >Mã NV: Mới</span
+          >
+        </div>
+
+        <p class="cstm-profile-tip">
+          Ảnh đại diện hiển thị trên hệ thống chấm công và lịch hẹn của cơ sở.
+        </p>
+      </div>
+
+      <div class="cstm-main-form">
+        <h2 class="cstm-section-title" id="modalTitle">👤 Hồ Sơ Nhân Viên</h2>
+
+        <div class="cstm-grid-fields">
+          <div
+            class="cstm-form-group cstm-col-2"
+            id="staffCodeGroup"
+            style="display: none"
+          >
+            <label class="cstm-label">Mã Nhân Viên Hệ Thống</label>
+            <input
+              type="text"
+              id="staffCode"
+              class="cstm-input cstm-input-disabled"
+              disabled
+            />
+          </div>
+
+          <div class="cstm-form-group">
+            <label class="cstm-label">Họ và Tên</label>
+            <input
+              type="text"
+              id="staffName"
+              placeholder="Tên nhân viên..."
+              class="cstm-input"
+              required
+            />
+          </div>
+
+          <div class="cstm-form-group">
+            <label class="cstm-label">Địa Chỉ Email</label>
+            <input
+              type="email"
+              id="staffEmail"
+              placeholder="Email liên kết tài khoản..."
+              class="cstm-input"
+              required
+            />
+          </div>
+
+          <div class="cstm-form-group">
+            <label class="cstm-label">Chức Vụ (Admin Chỉ Định)</label>
+            <div class="cstm-select-wrapper">
+              <select id="staffRole" class="cstm-select" required></select>
+            </div>
+          </div>
+
+          <div class="cstm-form-group">
+            <label class="cstm-label">Số Điện Thoại</label>
+            <input
+              type="tel"
+              id="staffPhone"
+              placeholder="Số điện thoại liên hệ..."
+              class="cstm-input"
+              required
+            />
+          </div>
+
+          <div class="cstm-form-group">
+            <label class="cstm-label">Số Căn Cước (CCCD)</label>
+            <input
+              type="text"
+              id="staffCccd"
+              pattern="[0-9]{12}"
+              placeholder="Nhập đủ 12 số"
+              class="cstm-input"
+              required
+            />
+          </div>
+
+          <div class="cstm-form-group">
+            <label class="cstm-label">Giới Tính</label>
+            <div class="cstm-select-wrapper">
+              <select id="staffGender" class="cstm-select" required>
+                <option value="MALE">Nam</option>
+                <option value="FEMALE">Nữ</option>
+                <option value="OTHER">Khác</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cstm-form-group">
+            <label class="cstm-label">Lương Cơ Bản (VNĐ)</label>
+            <input
+              type="number"
+              id="staffSalary"
+              min="0"
+              placeholder="Ví dụ: 7500000"
+              class="cstm-input"
+              required
+            />
+          </div>
+
+          <div class="cstm-form-group">
+            <label class="cstm-label">Tiền Thưởng (VNĐ)</label>
+            <input
+              type="number"
+              id="staffSalaryBonus"
+              min="0"
+              value="0"
+              placeholder="Ví dụ: 500000"
+              class="cstm-input"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="cstm-actions-bar">
+          <button
+            type="button"
+            id="btnCancelModal"
+            class="cstm-btn cstm-btn-secondary"
+          >
+            Hủy Bỏ
+          </button>
+          <button type="submit" class="cstm-btn cstm-btn-primary">
+            Lưu Thay Đổi
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="pet-toast-container"></div>
+<script src="StaffManagement.js"></script>

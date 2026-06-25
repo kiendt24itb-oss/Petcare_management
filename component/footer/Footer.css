@@ -1,0 +1,142 @@
+/* --- FOOTER SẮC CAM THƯƠNG HIỆU RỰC RỠ --- */
+.main-footer {
+  background: linear-gradient(
+    135deg,
+    #2b160f,
+    /* Màu xám than ánh cam trầm để giữ độ luxury */ #1f0e09
+  );
+  color: #f5ece9;
+  padding: 45px 8% 20px; /* Chiều cao gọn gàng */
+  font-size: 13.5px;
+  border-top: 4px solid var(--primary-color); /* Đường line cam rực rỡ */
+  text-align: left;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.footer-col .logo-footer {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  text-shadow: 0 2px 10px rgba(255, 122, 69, 0.3);
+}
+
+.footer-col .logo-footer span {
+  color: var(--white);
+}
+
+.footer-col h3 {
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.footer-col h3::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+.footer-col p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #dbcbc5;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: #dbcbc5;
+  transition: all 0.2s ease;
+}
+
+.footer-col ul li a:hover {
+  color: var(--primary-color);
+  padding-left: 4px;
+}
+
+/* KHU VỰC FORM ĐĂNG KÝ */
+.footer-cta-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.footer-cta-form input {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 122, 69, 0.3);
+  padding: 10px 14px;
+  border-radius: 8px;
+  color: white;
+  flex: 1;
+  outline: none;
+  font-size: 13px;
+  transition: all 0.3s;
+}
+
+.footer-cta-form input:focus {
+  border-color: var(--primary-color);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(255, 122, 69, 0.2);
+}
+
+.footer-cta-form button {
+  background: linear-gradient(135deg, var(--primary-color), #ff9a62);
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 122, 69, 0.3);
+  transition: all 0.2s;
+}
+
+.footer-cta-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 15px rgba(255, 122, 69, 0.5);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: #a8948d;
+  font-size: 12.5px;
+}
+
+/* RESPONSIVE FOOTER */
+@media screen and (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .main-footer {
+    padding: 35px 5% 20px;
+  }
+}
